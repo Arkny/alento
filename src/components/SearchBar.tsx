@@ -25,7 +25,7 @@ export const SearchBar = ({
         <img 
           src="/lovable-uploads/f119eb3c-3483-4172-89a6-79b01cba80a5.png" 
           alt="Ícone de pesquisa" 
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5"
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 brightness-0 invert opacity-70"
         />
         <Input
           placeholder="Pesquisar"
