@@ -23,7 +23,7 @@ export const SearchBar = ({
     <div className="relative">
       <div className="relative w-full">
         <svg 
-          className="absolute left-6 top-1/2 transform -translate-y-1/2 h-7 w-7 text-white"
+          className="absolute left-6 top-1/2 transform -translate-y-1/2 h-8 w-8 text-white"
           viewBox="0 0 24 24" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ export const SearchBar = ({
           placeholder="Pesquisar"
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-16 pr-20 py-5 bg-white/20 border-0 text-white placeholder:text-white/70 rounded-2xl h-16 text-xl backdrop-blur-sm"
+          className="pl-16 pr-20 py-5 bg-white/20 border-0 text-white placeholder:text-white/70 rounded-2xl h-16 text-2xl backdrop-blur-sm"
         />
         
         <Dialog>
@@ -51,7 +51,7 @@ export const SearchBar = ({
               size="icon"
               className="absolute right-4 top-1/2 transform -translate-y-1/2 h-12 w-12 hover:bg-white/10 text-white/70 hover:text-white rounded-xl"
             >
-              <SlidersHorizontal className="h-7 w-7" />
+              <SlidersHorizontal className="h-8 w-8" />
             </Button>
           </DialogTrigger>
           <DialogContent className="bg-surface-elevated border-surface-overlay/20">
