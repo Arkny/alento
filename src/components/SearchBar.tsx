@@ -22,11 +22,20 @@ export const SearchBar = ({
   return (
     <div className="relative mb-6">
       <div className="relative">
-        <img 
-          src="/lovable-uploads/f119eb3c-3483-4172-89a6-79b01cba80a5.png" 
-          alt="Ícone de pesquisa" 
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 brightness-0 invert opacity-70"
-        />
+        <svg 
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/70"
+          viewBox="0 0 24 24" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path 
+            d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          />
+        </svg>
         <Input
           placeholder="Pesquisar"
           value={searchTerm}
