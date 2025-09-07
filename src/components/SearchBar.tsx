@@ -41,7 +41,7 @@ export const SearchBar = ({
           placeholder="Pesquisar"
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-20 pr-24 py-6 bg-white/20 border-0 text-white placeholder:text-white/70 rounded-2xl h-20 text-4xl backdrop-blur-sm"
+          className="pl-20 pr-24 py-6 bg-white/20 border-0 text-white placeholder:text-white/70 rounded-2xl h-20 text-9xl backdrop-blur-sm"
         />
         
         <Dialog>
