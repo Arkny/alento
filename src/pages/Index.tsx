@@ -47,10 +47,10 @@ const Index = () => {
 
         {/* Header Container */}
         <div className="flex justify-center mb-8">
-          <div className="bg-surface-overlay/80 backdrop-blur-sm rounded-3xl px-12 py-8 w-full max-w-lg">
+          <div className="bg-surface-overlay/80 backdrop-blur-sm rounded-3xl px-16 py-10 w-full max-w-xl">
             {/* Header */}
-            <div className="flex items-center justify-center mb-8">
-              <h1 className="text-3xl font-semibold text-white text-center">Informativo</h1>
+            <div className="flex items-center justify-center mb-10">
+              <h1 className="text-4xl font-semibold text-white text-center">Informativo</h1>
             </div>
 
             {/* Search Bar */}
