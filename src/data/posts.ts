@@ -1,196 +1,160 @@
-import { Post } from "@/components/PostCard";
+export interface Post {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  author: string;
+  date: string;
+  source?: string;
+  tags: string[];
+}
 
 export const mockPosts: Post[] = [
   {
     id: "1",
-    title: "Departamento de Saúde Mental, Álcool e outras Drogas",
-    excerpt: "O Departamento de Saúde Mental, Álcool e outras Drogas (Desmad) integra a Secretaria de Atenção Especializada do Ministério da Saúde (SAES) e tem como competência...",
-    content: `O Departamento de Saúde Mental, Álcool e outras Drogas (Desmad) integra a Secretaria de Atenção Especializada do Ministério da Saúde (SAES) e tem como competência o desenvolvimento de políticas, diretrizes e ações de atenção à saúde mental, incluindo a prevenção, tratamento e reabilitação de pessoas com transtornos mentais e com problemas relacionados ao uso de álcool e outras drogas.
-
-O departamento trabalha na elaboração de normas técnicas, protocolos clínicos e diretrizes terapêuticas para a atenção em saúde mental, coordenando ações intersetoriais e promovendo a integração entre os diferentes níveis de atenção à saúde.
-
-Principais ações:
-- Desenvolvimento de políticas públicas em saúde mental
-- Coordenação da Rede de Atenção Psicossocial (RAPS)
-- Apoio técnico aos estados e municípios
-- Monitoramento e avaliação dos serviços de saúde mental
-- Promoção de ações de prevenção e promoção da saúde mental`,
-    category: "Mental",
-    author: "gov.br",
-    date: "2024-01-15",
-    source: "Ministério da Saúde",
-    tags: ["saúde mental", "políticas públicas", "SUS", "RAPS"]
+    title: "5 Técnicas de Respiração para Reduzir a Ansiedade",
+    excerpt: "Aprenda métodos simples e eficazes de respiração que podem ser usados em qualquer momento para acalmar a mente.",
+    content: "A respiração é uma ferramenta poderosa para controlar a ansiedade. Aqui estão 5 técnicas que você pode usar: 1) Respiração 4-7-8: Inspire por 4, segure por 7, expire por 8. 2) Respiração quadrada: Inspire, segure, expire e pause por 4 tempos cada. 3) Respiração profunda: Foque em expandir o diafragma. 4) Respiração nasal alternada: Use uma narina por vez. 5) Respiração com visualização: Imagine um local calmo enquanto respira.",
+    category: "Respiração",
+    author: "Dr. Ana Silva",
+    date: "15 de março, 2024",
+    source: "Centro de Bem-Estar Mental",
+    tags: ["respiração", "ansiedade", "técnicas", "calma"]
   },
   {
     id: "2",
-    title: "Novo Marco Legal da Educação Especial",
-    excerpt: "O governo federal apresentou o novo marco legal para a educação especial, estabelecendo diretrizes para garantir o acesso e a permanência de estudantes com deficiência...",
-    content: `O governo federal apresentou o novo marco legal para a educação especial, estabelecendo diretrizes para garantir o acesso e a permanência de estudantes com deficiência, transtornos globais do desenvolvimento e altas habilidades ou superdotação nas escolas regulares.
-
-O marco legal reforça os princípios da educação inclusiva e estabelece novas diretrizes para:
-
-Formação de professores:
-- Capacitação continuada em educação especial
-- Metodologias adaptadas de ensino
-- Uso de tecnologias assistivas
-
-Estrutura escolar:
-- Adaptação de espaços físicos
-- Recursos pedagógicos especializados
-- Atendimento educacional especializado (AEE)
-
-Avaliação e acompanhamento:
-- Planos educacionais individualizados
-- Sistemas de monitoramento do progresso
-- Parceria com famílias e profissionais especializados
-
-Esta iniciativa visa garantir que todos os estudantes tenham oportunidades equitativas de aprendizagem e desenvolvimento.`,
-    category: "Educação",
-    author: "MEC",
-    date: "2024-01-12",
-    source: "Ministério da Educação",
-    tags: ["educação especial", "inclusão", "acessibilidade", "direitos"]
+    title: "Primeiros Socorros Emocionais em Momentos de Crise",
+    excerpt: "Estratégias práticas para lidar com crises emocionais agudas e quando buscar ajuda profissional.",
+    content: "Em momentos de crise emocional intensa, é importante ter estratégias imediatas: 1) PARE - Reconheça que está em crise. 2) RESPIRE - Use técnicas de respiração profunda. 3) OBSERVE - Identifique seus sentimentos sem julgamento. 4) AÇÃO - Escolha uma ação segura e positiva. 5) CONECTE-SE - Entre em contato com alguém de confiança. Lembre-se: crises são temporárias e você pode superá-las.",
+    category: "Crise",
+    author: "Psicóloga Maria Santos",
+    date: "12 de março, 2024",
+    source: "Instituto de Apoio Psicológico",
+    tags: ["crise", "emergência", "primeiros socorros", "apoio"]
   },
   {
     id: "3",
-    title: "Programa de Fortalecimento da Atenção Básica",
-    excerpt: "Lançamento de programa nacional para fortalecer a atenção básica em saúde, com foco na ampliação da cobertura e melhoria da qualidade dos serviços...",
-    content: `O Ministério da Saúde lançou o Programa de Fortalecimento da Atenção Básica (PFAB), uma iniciativa que visa ampliar a cobertura e melhorar a qualidade dos serviços de atenção primária à saúde em todo o país.
-
-Objetivos principais:
-- Aumentar a cobertura da Estratégia Saúde da Família
-- Qualificar os profissionais da atenção básica
-- Modernizar a infraestrutura das unidades de saúde
-- Implementar sistemas de informação integrados
-
-Investimentos previstos:
-- R$ 2,5 bilhões para expansão da rede
-- Contratação de 15.000 novos profissionais
-- Reforma e construção de 800 unidades básicas de saúde
-- Aquisição de equipamentos médicos modernos
-
-Benefícios esperados:
-- Redução das filas de espera
-- Melhoria no acesso aos serviços preventivos
-- Fortalecimento da medicina de família e comunidade
-- Integração com outros níveis de atenção
-
-O programa será implementado em parceria com estados e municípios, priorizando regiões com maior vulnerabilidade social e menor cobertura assistencial.`,
-    category: "Mental",
-    author: "Ministério da Saúde",
-    date: "2024-01-10",
-    source: "Portal da Saúde",
-    tags: ["atenção básica", "SUS", "saúde da família", "investimento"]
+    title: "Técnica de Grounding 5-4-3-2-1 para Ansiedade",
+    excerpt: "Uma técnica sensorial simples para te trazer de volta ao momento presente durante episódios de ansiedade.",
+    content: "A técnica 5-4-3-2-1 usa seus sentidos para te ancorar no presente: 5 coisas que você pode VER (olhe ao redor), 4 coisas que você pode TOCAR (textura de objetos), 3 coisas que você pode OUVIR (sons ao redor), 2 coisas que você pode CHEIRAR (aromas), 1 coisa que você pode SABOREAR. Esta técnica interrompe o ciclo de pensamentos ansiosos e te traz de volta ao agora.",
+    category: "Ansiedade",
+    author: "Dr. João Oliveira",
+    date: "10 de março, 2024",
+    source: "Clínica de Terapia Cognitiva",
+    tags: ["ansiedade", "grounding", "presente", "técnica"]
   },
   {
     id: "4",
-    title: "Plataforma Digital de Aprendizagem para Ensino Médio",
-    excerpt: "Nova plataforma oferece recursos digitais complementares para estudantes do ensino médio, com conteúdos interativos e ferramentas de apoio ao aprendizado...",
-    content: `O Ministério da Educação lançou uma nova plataforma digital de aprendizagem destinada a estudantes do ensino médio de escolas públicas, oferecendo recursos educacionais complementares e inovadores.
-
-Características da plataforma:
-- Conteúdos multimídia interativos
-- Simulados e exercícios adaptativos
-- Videoaulas com professores especialistas
-- Ferramentas de acompanhamento do progresso
-- Gamificação do processo de aprendizagem
-
-Áreas de conhecimento contempladas:
-- Linguagens e suas tecnologias
-- Matemática e suas tecnologias
-- Ciências da natureza e suas tecnologias
-- Ciências humanas e sociais aplicadas
-
-Funcionalidades especiais:
-- Trilhas de aprendizagem personalizadas
-- Inteligência artificial para recomendação de conteúdos
-- Fóruns de discussão entre estudantes
-- Mentoria virtual com tutores
-- Preparação para o ENEM
-
-A plataforma está disponível gratuitamente para todos os estudantes do ensino médio público e pode ser acessada via web ou aplicativo móvel.`,
-    category: "Educação",
-    author: "FNDE",
-    date: "2024-01-08",
-    source: "Fundo Nacional de Desenvolvimento da Educação",
-    tags: ["tecnologia educacional", "ensino médio", "ENEM", "digital"]
+    title: "Práticas Diárias de Mindfulness para Iniciantes",
+    excerpt: "Introdução às práticas de atenção plena que podem ser integradas facilmente à sua rotina diária.",
+    content: "Mindfulness é sobre estar presente no momento atual. Comece com 5 minutos diários: 1) Respiração consciente - foque apenas na sua respiração. 2) Body scan - observe sensações no corpo sem julgamento. 3) Caminhada consciente - preste atenção em cada passo. 4) Alimentação mindful - saboreie cada mordida. 5) Meditação guiada - use apps ou vídeos. A prática regular reduz estresse e melhora o bem-estar.",
+    category: "Mindfulness",
+    author: "Instrutor Pedro Lima",
+    date: "8 de março, 2024",
+    source: "Centro de Meditação Zen",
+    tags: ["mindfulness", "meditação", "presença", "bem-estar"]
   },
   {
     id: "5",
-    title: "Campanha Nacional de Prevenção ao Suicídio",
-    excerpt: "Iniciativa do governo federal promove ações de conscientização e prevenção ao suicídio, com foco na identificação precoce de sinais de risco...",
-    content: `O Ministério da Saúde lançou a Campanha Nacional de Prevenção ao Suicídio, uma iniciativa abrangente que visa reduzir os índices de suicídio no país através de ações de conscientização, prevenção e apoio.
-
-Pilares da campanha:
-
-Conscientização:
-- Campanhas publicitárias em mídias tradicionais e digitais
-- Materiais educativos para escolas e comunidades
-- Capacitação de profissionais de diferentes setores
-- Desmistificação de tabus sobre saúde mental
-
-Prevenção:
-- Identificação precoce de sinais de risco
-- Treinamento para profissionais de saúde
-- Protocolos de atendimento em situações de crise
-- Fortalecimento da rede de apoio psicossocial
-
-Apoio:
-- Ampliação do Centro de Valorização da Vida (CVV)
-- Criação de novos centros de apoio psicossocial
-- Implementação de serviços de emergência especializados
-- Suporte às famílias e comunidades afetadas
-
-A campanha "Vida é a Melhor Escolha" contará com a participação de artistas, influenciadores e personalidades públicas para amplificar a mensagem de valorização da vida e busca por ajuda profissional.`,
-    category: "Mental",
-    author: "Ministério da Saúde",
-    date: "2024-01-05",
-    source: "Secretaria de Atenção Primária à Saúde",
-    tags: ["prevenção", "suicídio", "saúde mental", "campanha", "CVV"]
+    title: "Sinais de Depressão e Quando Buscar Ajuda",
+    excerpt: "Reconheça os sintomas da depressão e saiba quando é importante procurar apoio profissional.",
+    content: "A depressão pode se manifestar de várias formas: tristeza persistente, perda de interesse em atividades, fadiga, alterações no sono/apetite, dificuldade de concentração, sentimentos de inutilidade. Se você sente 5+ sintomas por mais de 2 semanas, procure ajuda. Lembre-se: depressão é uma condição médica tratável, não é fraqueza. Terapia, medicação e mudanças no estilo de vida podem ajudar significativamente.",
+    category: "Depressão",
+    author: "Dra. Carla Mendes",
+    date: "5 de março, 2024",
+    source: "Hospital das Clínicas",
+    tags: ["depressão", "sintomas", "ajuda", "tratamento"]
   },
   {
     id: "6",
-    title: "Programa Mais Alfabetização 2024",
-    excerpt: "Governo federal anuncia expansão do programa de alfabetização com novas metodologias e recursos para reduzir os índices de analfabetismo no país...",
-    content: `O governo federal anunciou a expansão do Programa Mais Alfabetização para 2024, com novas metodologias e investimentos significativos para combater o analfabetismo e melhorar os índices de alfabetização em todo o país.
-
-Principais mudanças:
-
-Metodologia atualizada:
-- Incorporação de métodos fônicos e construtivistas
-- Uso de tecnologias digitais no processo de alfabetização
-- Materiais didáticos renovados e contextualizados
-- Formação específica para alfabetizadores
-
-Expansão do programa:
-- Atendimento a 2 milhões de estudantes
-- Parceria com 3.500 municípios
-- Contratação de 25.000 novos alfabetizadores
-- Criação de 1.000 novos pontos de atendimento
-
-Recursos e investimentos:
-- R$ 1,8 bilhão em investimentos diretos
-- Bolsas para alfabetizadores e coordenadores
-- Aquisição de materiais didáticos modernos
-- Infraestrutura tecnológica para unidades
-
-Metas para 2024:
-- Reduzir em 50% o analfabetismo funcional
-- Aumentar em 30% os índices de proficiência em leitura
-- Formar 100.000 novos leitores fluentes
-- Implementar avaliação contínua do progresso
-
-O programa priorizará regiões Norte e Nordeste, onde os índices de analfabetismo ainda são mais elevados.`,
-    category: "Educação",
-    author: "Secretaria de Alfabetização",
-    date: "2024-01-03",
-    source: "Ministério da Educação",
-    tags: ["alfabetização", "educação básica", "analfabetismo", "metodologia"]
+    title: "Rotinas de Autocuidado para Dias Difíceis",
+    excerpt: "Estratégias simples e práticas de autocuidado que você pode usar mesmo quando está se sentindo mal.",
+    content: "Nos dias difíceis, o autocuidado básico é essencial: 1) Higiene mínima - banho rápido, escovação dos dentes. 2) Hidratação - beba água regularmente. 3) Alimentação gentil - algo nutritivo e simples. 4) Movimento suave - alongamento ou caminhada curta. 5) Conexão - mensagem para um amigo. 6) Descanso - permita-se relaxar. 7) Gratidão - liste 3 coisas pequenas pelas quais é grato. Pequenos atos importam.",
+    category: "Autocuidado",
+    author: "Terapeuta Sofia Rodrigues",
+    date: "2 de março, 2024",
+    source: "Espaço Terapêutico Acolher",
+    tags: ["autocuidado", "rotina", "bem-estar", "gentileza"]
+  },
+  {
+    id: "7",
+    title: "Melhorando a Qualidade do Sono para Saúde Mental",
+    excerpt: "A conexão entre sono e saúde mental, com dicas práticas para uma melhor higiene do sono.",
+    content: "O sono é fundamental para a saúde mental. Dicas para melhorar: 1) Horário regular - durma e acorde no mesmo horário. 2) Ambiente ideal - escuro, silencioso e fresco. 3) Sem telas 1h antes de dormir. 4) Relaxamento - leitura, música suave ou meditação. 5) Evite cafeína após 14h. 6) Exercícios regulares, mas não à noite. 7) Journaling - escreva preocupações antes de dormir. Sono de qualidade melhora humor, concentração e resistência ao estresse.",
+    category: "Sono",
+    author: "Dr. Ricardo Tavares",
+    date: "28 de fevereiro, 2024",
+    source: "Instituto do Sono",
+    tags: ["sono", "higiene", "saúde mental", "descanso"]
+  },
+  {
+    id: "8",
+    title: "Estabelecendo Limites Saudáveis nos Relacionamentos",
+    excerpt: "Como comunicar suas necessidades e estabelecer limites de forma assertiva e respeitosa.",
+    content: "Limites saudáveis protegem seu bem-estar mental: 1) Identifique suas necessidades e valores. 2) Comunique claramente - use 'eu' em vez de 'você'. 3) Seja consistente - mantenha os limites estabelecidos. 4) Não se justifique excessivamente. 5) Aceite que nem todos vão gostar. 6) Pratique o 'não' sem culpa. 7) Busque apoio quando necessário. Limites não são muros, são portas que você controla.",
+    category: "Relacionamentos",
+    author: "Psicóloga Luna Ferreira",
+    date: "25 de fevereiro, 2024",
+    source: "Clínica de Terapia Familiar",
+    tags: ["limites", "relacionamentos", "comunicação", "assertividade"]
+  },
+  {
+    id: "9",
+    title: "Lidando com Burnout e Estresse no Trabalho",
+    excerpt: "Estratégias para reconhecer, prevenir e lidar com o esgotamento profissional.",
+    content: "Burnout é o esgotamento físico e mental causado pelo trabalho. Sinais: exaustão constante, cinismo, redução da eficácia. Estratégias: 1) Pausas regulares durante o dia. 2) Defina limites entre trabalho e vida pessoal. 3) Delegue quando possível. 4) Pratique técnicas de relaxamento. 5) Busque apoio da equipe/supervisor. 6) Reavalie prioridades e metas. 7) Considere mudanças necessárias. Sua saúde mental vale mais que qualquer trabalho.",
+    category: "Trabalho",
+    author: "Coach Andrea Costa",
+    date: "22 de fevereiro, 2024",
+    source: "Centro de Desenvolvimento Profissional",
+    tags: ["burnout", "trabalho", "estresse", "equilíbrio"]
+  },
+  {
+    id: "10",
+    title: "Números de Emergência e Onde Buscar Ajuda",
+    excerpt: "Lista de recursos de apoio e números de emergência para momentos de crise em saúde mental.",
+    content: "RECURSOS DE EMERGÊNCIA: • CVV (Centro de Valorização da Vida): 188 - 24h gratuito • CAPS (Centro de Atenção Psicossocial): procure o mais próximo • SAMU: 192 • Bombeiros: 193 • Polícia: 190. ONLINE: • Mapa da Saúde Mental (mapasaudemental.com.br) • Terapia online gratuita. APPS: Querido Diário, Sanvello, Calm. LEMBRE-SE: Buscar ajuda é um ato de coragem, não de fraqueza. Você não está sozinho.",
+    category: "Emergência",
+    author: "Equipe de Apoio",
+    date: "20 de fevereiro, 2024",
+    source: "Rede de Apoio Mental",
+    tags: ["emergência", "ajuda", "recursos", "apoio"]
+  },
+  {
+    id: "11",
+    title: "Exercícios de Respiração 4-7-8 para Dormir",
+    excerpt: "Uma técnica simples de respiração que pode ajudar você a adormecer mais rapidamente.",
+    content: "A técnica 4-7-8 é excelente para induzir o sono: 1) Expire completamente pela boca. 2) Feche a boca e inspire pelo nariz contando até 4. 3) Segure a respiração contando até 7. 4) Expire pela boca contando até 8, fazendo um som suave. 5) Repita o ciclo 3-4 vezes. Esta técnica ativa o sistema nervoso parassimpático, promovendo relaxamento e sono.",
+    category: "Respiração",
+    author: "Dr. Paulo Mendes",
+    date: "18 de fevereiro, 2024",
+    source: "Clínica do Sono",
+    tags: ["respiração", "sono", "relaxamento", "4-7-8"]
+  },
+  {
+    id: "12",
+    title: "Ataques de Pânico: Como Reconhecer e Lidar",
+    excerpt: "Entenda os sintomas dos ataques de pânico e aprenda estratégias para gerenciá-los.",
+    content: "Ataques de pânico são episódios súbitos de medo intenso. Sintomas: palpitações, sudorese, tremores, falta de ar, sensação de desmaio. DURANTE O ATAQUE: 1) Respire lentamente. 2) Use técnica 5-4-3-2-1. 3) Lembre-se: é temporário e não é perigoso. 4) Não lute contra - aceite a sensação. PREVENÇÃO: exercícios regulares, redução de cafeína, técnicas de relaxamento, terapia cognitivo-comportamental.",
+    category: "Ansiedade",
+    author: "Dra. Fernanda Lima",
+    date: "15 de fevereiro, 2024",
+    source: "Centro de Transtornos de Ansiedade",
+    tags: ["pânico", "ansiedade", "ataques", "estratégias"]
   }
 ];
 
 export const categories = [
   { id: "all", name: "Tudo" },
-  { id: "Educação", name: "Educação" },
-  { id: "Mental", name: "Mental" }
+  { id: "Ansiedade", name: "Ansiedade" },
+  { id: "Depressão", name: "Depressão" },
+  { id: "Crise", name: "Crise" },
+  { id: "Respiração", name: "Respiração" },
+  { id: "Mindfulness", name: "Mindfulness" },
+  { id: "Autocuidado", name: "Autocuidado" },
+  { id: "Sono", name: "Sono" },
+  { id: "Relacionamentos", name: "Relacionamentos" },
+  { id: "Trabalho", name: "Trabalho" },
+  { id: "Emergência", name: "Emergência" }
 ];
