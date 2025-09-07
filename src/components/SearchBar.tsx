@@ -23,7 +23,7 @@ export const SearchBar = ({
     <div className="relative">
       <div className="relative w-full">
         <svg 
-          className="absolute left-6 top-1/2 transform -translate-y-1/2 h-9 w-9 text-white"
+          className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-white"
           viewBox="0 0 24 24" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"
