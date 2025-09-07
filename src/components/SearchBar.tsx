@@ -41,7 +41,7 @@ export const SearchBar = ({
           placeholder="Pesquisar"
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-16 pr-20 py-5 bg-white/20 border-0 text-white placeholder:text-white/70 rounded-2xl h-16 text-3xl backdrop-blur-sm"
+          className="pl-18 pr-20 py-5 bg-white/20 border-0 text-white placeholder:text-white/70 rounded-2xl h-18 text-4xl backdrop-blur-sm"
         />
         
         <Dialog>
@@ -49,9 +49,9 @@ export const SearchBar = ({
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 h-12 w-12 hover:bg-white/10 text-white/70 hover:text-white rounded-xl"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 h-14 w-14 hover:bg-white/10 text-white/70 hover:text-white rounded-xl"
             >
-              <SlidersHorizontal className="h-9 w-9" />
+              <SlidersHorizontal className="h-10 w-10" />
             </Button>
           </DialogTrigger>
           <DialogContent className="bg-surface-elevated border-surface-overlay/20">
