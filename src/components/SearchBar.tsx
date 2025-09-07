@@ -34,6 +34,7 @@ export const SearchBar = ({
             strokeWidth="2" 
             strokeLinecap="round" 
             strokeLinejoin="round"
+            filter="none"
           />
         </svg>
         <Input
