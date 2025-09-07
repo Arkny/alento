@@ -38,15 +38,19 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gradient-start via-gradient-middle to-gradient-end">
       <div className="container mx-auto px-6 py-8">
+        {/* Back Button */}
+        <div className="flex justify-start mb-4">
+          <button className="p-3 bg-surface-overlay/80 rounded-full backdrop-blur-sm">
+            <ChevronLeft className="h-6 w-6 text-white" />
+          </button>
+        </div>
+
         {/* Header Container */}
         <div className="flex justify-center mb-8">
           <div className="bg-surface-overlay/80 backdrop-blur-sm rounded-3xl px-8 py-6 w-full max-w-md">
             {/* Header */}
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <button className="p-2 bg-white/20 rounded-full">
-                <ChevronLeft className="h-5 w-5 text-white" />
-              </button>
-              <h1 className="text-2xl font-semibold text-white text-center flex-1">Informativo</h1>
+            <div className="flex items-center justify-center mb-6">
+              <h1 className="text-2xl font-semibold text-white text-center">Informativo</h1>
             </div>
 
             {/* Search Bar */}
