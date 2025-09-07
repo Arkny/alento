@@ -1,8 +1,8 @@
 import React from 'react';
 import { InformativoScreen } from '@/screens/InformativoScreen';
 
-const Index = () => {
+const App = () => {
   return <InformativoScreen />;
 };
 
-export default Index;
+export default App;
