@@ -47,6 +47,19 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        gradient: {
+          start: "hsl(var(--gradient-start))",
+          middle: "hsl(var(--gradient-middle))",
+          end: "hsl(var(--gradient-end))",
+        },
+        surface: {
+          elevated: "hsl(var(--surface-elevated))",
+          overlay: "hsl(var(--surface-overlay))",
+        },
+        filter: {
+          active: "hsl(var(--filter-active))",
+          inactive: "hsl(var(--filter-inactive))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
