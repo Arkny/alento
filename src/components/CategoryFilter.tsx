@@ -12,9 +12,12 @@ interface CategoryFilterProps {
 }
 
 export const CategoryFilter = ({ categories, activeCategory, onCategoryChange }: CategoryFilterProps) => {
+  // Mostrar apenas as primeiras 5 categorias
+  const visibleCategories = categories.slice(0, 5);
+  
   return (
     <div className="flex gap-3 mb-8 overflow-x-auto pb-2">
-      {categories.map((category) => (
+      {visibleCategories.map((category) => (
         <Button
           key={category.id}
           variant={activeCategory === category.id ? "default" : "secondary"}

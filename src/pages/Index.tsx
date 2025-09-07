@@ -50,7 +50,9 @@ const Index = () => {
         <SearchBar
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
-          onFiltersClick={() => {}}
+          categories={categories}
+          activeCategory={activeCategory}
+          onCategoryChange={setActiveCategory}
         />
 
         {/* Category Filter */}
