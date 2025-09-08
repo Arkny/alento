@@ -36,7 +36,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gradient-start via-gradient-middle to-gradient-end">
+    <div className="min-h-screen bg-gradient-to-b from-gradient-start via-gradient-middle to-gradient-end">
       <div className="container mx-auto px-6 py-8">
         {/* Back Button */}
         <div className="flex justify-start mb-4">
