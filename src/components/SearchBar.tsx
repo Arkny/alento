@@ -1,8 +1,9 @@
-import { Search, SlidersHorizontal } from "lucide-react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+
 
 interface SearchBarProps {
   searchTerm: string;
@@ -37,7 +38,7 @@ export const SearchBar = ({
               size="icon"
               className="absolute right-3 top-1/2 transform -translate-y-1/2 h-12 w-12 hover:bg-white/10 text-white/70 hover:text-white rounded-xl"
             >
-              <SlidersHorizontal className="h-7 w-7" />
+              <img src="/lovable-uploads/d2274c02-ab37-476e-a70e-0f6eb6a2a356.png" alt="Filter" className="h-7 w-7" />
             </Button>
           </DialogTrigger>
           <DialogContent className="bg-surface-elevated border-surface-overlay/20">
