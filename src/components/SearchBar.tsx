@@ -22,26 +22,11 @@ export const SearchBar = ({
   return (
     <div className="relative">
       <div className="relative w-full">
-        <svg 
-          className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-white"
-          viewBox="0 0 24 24" 
-          fill="none" 
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path 
-            d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round"
-            filter="none"
-          />
-        </svg>
         <Input
           placeholder="Pesquisar"
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-20 pr-24 py-6 bg-white/20 border-0 text-white placeholder:text-white/70 rounded-2xl h-20 text-9xl backdrop-blur-sm"
+          className="pl-6 pr-24 py-6 bg-white/20 border-0 text-white placeholder:text-white/70 rounded-2xl h-20 text-9xl backdrop-blur-sm"
         />
         
         <Dialog>
