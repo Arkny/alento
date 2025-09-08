@@ -16,7 +16,7 @@ export const CategoryFilter = ({ categories, activeCategory, onCategoryChange }:
   const visibleCategories = categories.slice(0, 5);
   
   return (
-    <div className="flex gap-3 mb-8 overflow-x-auto pb-2">
+    <div className="flex gap-3 mb-8 overflow-x-auto pb-2 justify-center">
       {visibleCategories.map((category) => (
         <Button
           key={category.id}
