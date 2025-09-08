@@ -22,11 +22,12 @@ export const SearchBar = ({
   return (
     <div className="relative">
       <div className="relative w-full">
+        <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-7 w-7 text-white/70" />
         <Input
           placeholder="Pesquisar"
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-6 pr-24 py-6 bg-white/20 border-0 text-white placeholder:text-white/70 rounded-2xl h-20 text-9xl backdrop-blur-sm"
+          className="pl-20 pr-24 py-6 bg-white/20 border-0 text-white placeholder:text-white/70 rounded-2xl h-20 text-9xl backdrop-blur-sm"
         />
         
         <Dialog>
