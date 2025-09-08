@@ -21,8 +21,8 @@ export const SearchBar = ({
 }: SearchBarProps) => {
   return (
     <div className="relative">
+      <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-7 w-7 text-white/70 z-10" />
       <div className="relative w-full">
-        <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-7 w-7 text-white/70" />
         <Input
           placeholder="Pesquisar"
           value={searchTerm}
