@@ -22,7 +22,7 @@ interface PostCardProps {
 export const PostCard = ({ post, onClick }: PostCardProps) => {
   return (
     <Card 
-      className="bg-black/40 hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1 rounded-3xl border-0 overflow-hidden"
+      className="bg-white border-4 border-black/30 hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1 rounded-3xl overflow-hidden"
       onClick={onClick}
     >
       <div className="p-6">
