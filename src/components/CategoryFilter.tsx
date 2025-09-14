@@ -25,7 +25,7 @@ export const CategoryFilter = ({ categories, activeCategory, onCategoryChange }:
           className={`
             px-6 py-3 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200
             ${activeCategory === category.id 
-              ? "bg-black/40 text-white shadow-lg" 
+              ? "bg-green-500 text-white shadow-lg" 
               : "bg-black/40 text-white hover:bg-black/50"
             }
           `}
