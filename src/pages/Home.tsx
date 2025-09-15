@@ -73,18 +73,6 @@ export default function Home() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setIsExpanded(true)}
-                    animate={{
-                      boxShadow: [
-                        "0 0 0 0 rgba(255, 255, 255, 0.3)",
-                        "0 0 0 20px rgba(255, 255, 255, 0)",
-                        "0 0 0 0 rgba(255, 255, 255, 0)"
-                      ]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatType: "loop"
-                    }}
                   >
                     <div className="text-white/80 text-lg sm:text-xl font-light">
                       Toque aqui
