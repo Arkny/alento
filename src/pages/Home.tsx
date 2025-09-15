@@ -86,23 +86,16 @@ export default function Home() {
                 </button>
 
                 {/* Navigation Items Grid */}
-                <div className="grid grid-cols-3 gap-4 w-80 h-80 place-items-center">
+                <div className="grid grid-cols-3 gap-6 w-96">
                   {navigationItems.map((item, index) => (
-                    <button
-                      key={item.id}
-                      className={`w-16 h-16 ${item.color} rounded-full shadow-lg flex flex-col items-center justify-center cursor-pointer border-2 border-white/30 hover:scale-105 transition-transform duration-200`}
-                      onClick={() => handleItemClick(item.path)}
-                    >
-                      <item.icon className="w-6 h-6 text-white mb-1" />
-                    </button>
-                  ))}
-                </div>
-
-                {/* Labels */}
-                <div className="grid grid-cols-3 gap-4 w-80 mt-2">
-                  {navigationItems.map((item) => (
-                    <div key={`${item.id}-label`} className="text-center">
-                      <span className="text-xs text-white/70 font-medium">
+                    <div key={item.id} className="flex flex-col items-center gap-2">
+                      <button
+                        className={`w-20 h-20 ${item.color} rounded-full shadow-lg flex items-center justify-center cursor-pointer border-2 border-white/30 hover:scale-105 transition-transform duration-200`}
+                        onClick={() => handleItemClick(item.path)}
+                      >
+                        <item.icon className="w-7 h-7 text-white" />
+                      </button>
+                      <span className="text-xs text-white/80 font-medium text-center">
                         {item.label}
                       </span>
                     </div>
