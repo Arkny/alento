@@ -37,20 +37,20 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gradient-start via-gradient-middle to-gradient-end">
-      <div className="container mx-auto px-6 py-8">
+      <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-8">
         {/* Back Button */}
         <div className="flex justify-start mb-4">
-          <button className="p-3 bg-surface-overlay/80 rounded-full backdrop-blur-sm">
-            <ChevronLeft className="h-6 w-6 text-white" />
+          <button className="p-2 sm:p-3 bg-surface-overlay/80 rounded-full backdrop-blur-sm">
+            <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
           </button>
         </div>
 
         {/* Header Container */}
-        <div className="flex justify-center mb-8">
-          <div className="bg-black/35 backdrop-blur-sm rounded-3xl px-16 py-10 w-full max-w-xl">
+        <div className="flex justify-center mb-6 sm:mb-8">
+          <div className="bg-black/35 backdrop-blur-sm rounded-2xl sm:rounded-3xl px-4 sm:px-16 py-6 sm:py-10 w-full max-w-xl">
             {/* Header */}
-            <div className="flex items-center justify-center mb-10">
-              <h1 className="text-4xl font-semibold text-white text-center">Informativo</h1>
+            <div className="flex items-center justify-center mb-6 sm:mb-10">
+              <h1 className="text-2xl sm:text-4xl font-semibold text-white text-center">Informativo</h1>
             </div>
 
             {/* Search Bar */}
@@ -72,7 +72,7 @@ const Index = () => {
         />
 
         {/* Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {filteredPosts.map((post) => (
             <PostCard
               key={post.id}

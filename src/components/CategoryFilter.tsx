@@ -16,14 +16,14 @@ export const CategoryFilter = ({ categories, activeCategory, onCategoryChange }:
   const visibleCategories = categories.slice(0, 5);
   
   return (
-    <div className="flex gap-3 mb-8 overflow-x-auto pb-2 justify-center">
+    <div className="flex gap-2 sm:gap-3 mb-6 sm:mb-8 overflow-x-auto pb-2 justify-center px-4 sm:px-0">
       {visibleCategories.map((category) => (
         <Button
           key={category.id}
           variant={activeCategory === category.id ? "default" : "secondary"}
           onClick={() => onCategoryChange(category.id)}
           className={`
-            px-6 py-3 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200
+            px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200
             ${activeCategory === category.id 
               ? "bg-primary text-primary-foreground shadow-lg" 
               : "bg-black/40 text-white hover:bg-black/50"

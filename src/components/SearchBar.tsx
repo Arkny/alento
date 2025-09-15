@@ -21,13 +21,13 @@ export const SearchBar = ({
 }: SearchBarProps) => {
   return (
     <div className="relative">
-      <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-7 w-7 text-white/70 z-10" />
+      <Search className="absolute left-3 sm:left-6 top-1/2 transform -translate-y-1/2 h-5 w-5 sm:h-7 sm:w-7 text-white/70 z-10" />
       <div className="relative w-full">
         <Input
           placeholder="Pesquisar"
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-20 pr-24 py-6 bg-black/35 border-0 text-white placeholder:text-white/70 rounded-2xl h-20 text-9xl backdrop-blur-sm"
+          className="pl-12 sm:pl-20 pr-16 sm:pr-24 py-4 sm:py-6 bg-black/35 border-0 text-white placeholder:text-white/70 rounded-xl sm:rounded-2xl h-14 sm:h-20 text-base sm:text-lg backdrop-blur-sm"
         />
         
         <Dialog>
@@ -35,16 +35,16 @@ export const SearchBar = ({
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 h-12 w-12 hover:bg-white/10 text-white/70 hover:text-white rounded-xl"
+              className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 h-10 w-10 sm:h-12 sm:w-12 hover:bg-white/10 text-white/70 hover:text-white rounded-lg sm:rounded-xl"
             >
-              <SlidersHorizontal className="h-7 w-7" />
+              <SlidersHorizontal className="h-5 w-5 sm:h-7 sm:w-7" />
             </Button>
           </DialogTrigger>
           <DialogContent className="bg-black/10 border-surface-overlay/20 backdrop-blur-md">
             <DialogHeader>
               <DialogTitle className="text-white font-semibold">Filtrar por Categoria</DialogTitle>
             </DialogHeader>
-            <div className="grid grid-cols-2 gap-3 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
               {categories.map((category) => (
                 <Badge
                   key={category.id}
