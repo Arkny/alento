@@ -40,7 +40,7 @@ export const SearchBar = ({
               <SlidersHorizontal className="h-7 w-7" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-surface-elevated border-surface-overlay/20">
+          <DialogContent className="bg-black/50 border-surface-overlay/20">
             <DialogHeader>
               <DialogTitle className="text-white">Filtrar por Categoria</DialogTitle>
             </DialogHeader>
