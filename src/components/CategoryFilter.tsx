@@ -16,7 +16,8 @@ export const CategoryFilter = ({ categories, activeCategory, onCategoryChange }:
   const visibleCategories = categories.slice(0, 5);
   
   return (
-    <div className="flex gap-2 sm:gap-3 mb-6 sm:mb-8 overflow-x-auto pb-2 justify-center px-4 sm:px-0">
+    <div className="flex gap-2 sm:gap-3 mb-6 sm:mb-8 overflow-x-auto pb-2 justify-start px-4 sm:px-0 scrollbar-hide"
+         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       {visibleCategories.map((category) => (
         <Button
           key={category.id}
