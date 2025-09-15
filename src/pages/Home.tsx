@@ -9,7 +9,8 @@ import {
   Camera,
   Music,
   Heart,
-  Star
+  Star,
+  X
 } from "lucide-react";
 
 interface NavigationItem {
@@ -36,8 +37,11 @@ export default function Home() {
   const navigate = useNavigate();
 
   const handleItemClick = (path: string) => {
-    setIsExpanded(false);
-    setTimeout(() => navigate(path), 300);
+    navigate(path);
+  };
+
+  const handleToggleExpanded = () => {
+    setIsExpanded(!isExpanded);
   };
 
   return (
@@ -54,102 +58,66 @@ export default function Home() {
       />
       
       {/* Main Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen">
+      <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
         <div className="flex flex-col items-center">
           
-          {/* Central Orb */}
-          <div className="relative">
-            <AnimatePresence>
-              {!isExpanded && (
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="relative"
+          {/* Central Orb or Expanded Menu */}
+          <div className="relative flex items-center justify-center">
+            
+            {!isExpanded ? (
+              // Central Orb
+              <button
+                className="w-36 h-36 sm:w-48 sm:h-48 bg-black/20 backdrop-blur-sm rounded-full shadow-2xl flex items-center justify-center cursor-pointer border border-white/20 hover:bg-black/25 transition-colors duration-200"
+                onClick={handleToggleExpanded}
+              >
+                <div className="text-white/80 text-lg sm:text-xl font-light">
+                  Toque aqui
+                </div>
+              </button>
+            ) : (
+              // Expanded Menu
+              <div className="relative">
+                {/* Close Button */}
+                <button
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-black/40 backdrop-blur-sm rounded-full shadow-xl flex items-center justify-center cursor-pointer border border-white/20 z-10 hover:bg-black/50 transition-colors"
+                  onClick={handleToggleExpanded}
                 >
-                  <motion.button
-                    className="w-36 h-36 sm:w-48 sm:h-48 bg-black/20 backdrop-blur-sm rounded-full shadow-2xl flex items-center justify-center cursor-pointer border border-white/20"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setIsExpanded(true)}
-                  >
-                    <div className="text-white/80 text-lg sm:text-xl font-light">
-                      Toque aqui
+                  <X className="w-5 h-5 text-white/80" />
+                </button>
+
+                {/* Navigation Items Grid */}
+                <div className="grid grid-cols-3 gap-4 w-80 h-80 place-items-center">
+                  {navigationItems.map((item, index) => (
+                    <button
+                      key={item.id}
+                      className={`w-16 h-16 ${item.color} rounded-full shadow-lg flex flex-col items-center justify-center cursor-pointer border-2 border-white/30 hover:scale-105 transition-transform duration-200`}
+                      onClick={() => handleItemClick(item.path)}
+                    >
+                      <item.icon className="w-6 h-6 text-white mb-1" />
+                    </button>
+                  ))}
+                </div>
+
+                {/* Labels */}
+                <div className="grid grid-cols-3 gap-4 w-80 mt-2">
+                  {navigationItems.map((item) => (
+                    <div key={`${item.id}-label`} className="text-center">
+                      <span className="text-xs text-white/70 font-medium">
+                        {item.label}
+                      </span>
                     </div>
-                  </motion.button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Expanded Navigation */}
-            <AnimatePresence>
-              {isExpanded && (
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="relative"
-                >
-                  {/* Central Close Button */}
-                  <motion.button
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-black/40 backdrop-blur-sm rounded-full shadow-xl flex items-center justify-center cursor-pointer border border-white/20 z-20"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => setIsExpanded(false)}
-                  >
-                    <div className="w-4 h-4 border-2 border-white/80 rounded-full" />
-                  </motion.button>
-
-                  {/* Navigation Items in Circle */}
-                  <div className="relative w-80 h-80 sm:w-96 sm:h-96">
-                    {navigationItems.map((item, index) => {
-                      const angle = (index * 360) / navigationItems.length;
-                      const radius = 140;
-                      const x = Math.cos((angle - 90) * (Math.PI / 180)) * radius;
-                      const y = Math.sin((angle - 90) * (Math.PI / 180)) * radius;
-                      
-                      return (
-                        <motion.button
-                          key={item.id}
-                          className={`absolute w-14 h-14 sm:w-16 sm:h-16 ${item.color} rounded-full shadow-lg flex items-center justify-center cursor-pointer border-2 border-white/30`}
-                          style={{
-                            left: `calc(50% + ${x}px - 28px)`,
-                            top: `calc(50% + ${y}px - 28px)`,
-                          }}
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          transition={{ 
-                            delay: index * 0.1,
-                            duration: 0.3,
-                            ease: "easeOut"
-                          }}
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          onClick={() => handleItemClick(item.path)}
-                        >
-                          <item.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                        </motion.button>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Dots Indicator */}
-          <motion.div 
-            className="flex gap-2 mt-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-          >
+          <div className="flex gap-2 mt-16">
             <div className="w-2 h-2 bg-white/60 rounded-full" />
             <div className="w-2 h-2 bg-white/60 rounded-full" />
             <div className="w-2 h-2 bg-white/40 rounded-full" />
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
