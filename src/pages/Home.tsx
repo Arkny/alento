@@ -113,7 +113,7 @@ export default function Home() {
                       return (
                         <motion.button
                           key={item.id}
-                          className={`absolute w-14 h-14 sm:w-16 sm:h-16 ${item.color} rounded-full shadow-lg flex items-center justify-center cursor-pointer border-2 border-white/30`}
+                          className="absolute w-14 h-14 sm:w-16 sm:h-16 bg-black/20 rounded-full shadow-lg flex items-center justify-center cursor-pointer border-2 border-white/30"
                           style={{
                             left: `calc(50% + ${x}px - 28px)`,
                             top: `calc(50% + ${y}px - 28px)`,
