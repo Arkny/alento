@@ -56,7 +56,7 @@ export const PostCard = ({ post, onClick }: PostCardProps) => {
             {post.tags.slice(0, 3).map((tag, index) => (
               <span 
                 key={index}
-                className="px-2 py-1 rounded-full text-xs" style={{ backgroundColor: '#3FFFC9', color: 'white' }}
+                className="px-2 py-1 rounded-full text-xs bg-filter-active text-white"
               >
                 {tag}
               </span>
