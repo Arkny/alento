@@ -69,7 +69,7 @@ export default function Home() {
                   className="relative"
                 >
                   <motion.button
-                    className="w-32 h-32 sm:w-40 sm:h-40 bg-black/20 backdrop-blur-sm rounded-full shadow-2xl flex items-center justify-center cursor-pointer border border-white/20"
+                    className="w-36 h-36 sm:w-48 sm:h-48 bg-black/20 backdrop-blur-sm rounded-full shadow-2xl flex items-center justify-center cursor-pointer border border-white/20"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setIsExpanded(true)}
