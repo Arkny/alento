@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { ChevronLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { SearchBar } from "@/components/SearchBar";
 import { CategoryFilter } from "@/components/CategoryFilter";
 import { PostCard } from "@/components/PostCard";
@@ -8,6 +9,7 @@ import { mockPosts, categories } from "@/data/posts";
 import { Post } from "@/components/PostCard";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
@@ -40,7 +42,10 @@ const Index = () => {
       <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-8">
         {/* Back Button */}
         <div className="flex justify-start mb-4">
-          <button className="p-2 sm:p-3 bg-surface-overlay/80 rounded-full backdrop-blur-sm">
+          <button 
+            onClick={() => navigate("/")}
+            className="p-2 sm:p-3 bg-surface-overlay/80 rounded-full backdrop-blur-sm hover:bg-surface-overlay/90 transition-colors"
+          >
             <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
           </button>
         </div>
