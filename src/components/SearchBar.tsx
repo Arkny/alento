@@ -40,9 +40,9 @@ export const SearchBar = ({
               <SlidersHorizontal className="h-7 w-7" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-black/20 border-surface-overlay/20">
+          <DialogContent className="bg-black/20 border-surface-overlay/20 backdrop-blur-md">
             <DialogHeader>
-              <DialogTitle className="text-white">Filtrar por Categoria</DialogTitle>
+              <DialogTitle className="text-white font-semibold">Filtrar por Categoria</DialogTitle>
             </DialogHeader>
             <div className="grid grid-cols-2 gap-3 mt-4">
               {categories.map((category) => (
@@ -53,8 +53,8 @@ export const SearchBar = ({
                   className={`
                     cursor-pointer px-4 py-2 text-center transition-all duration-200 rounded-full
                     ${activeCategory === category.id 
-                      ? "bg-filter-active text-white shadow-lg" 
-                      : "bg-filter-inactive text-white hover:bg-filter-active"
+                      ? "bg-white text-black shadow-lg font-medium" 
+                      : "bg-white/10 text-white hover:bg-white/20 border border-white/20"
                     }
                   `}
                 >
