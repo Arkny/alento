@@ -90,7 +90,7 @@ const Grounding543221 = () => {
               Parabéns! Você completou o exercício de grounding 5,4,3,2,1. 
               Esperamos que se sinta mais presente e conectado.
             </p>
-            <div className="space-y-2">
+            <div className="flex flex-col gap-3">
               <Link to="/grounding">
                 <Button className="w-full">Voltar aos Exercícios</Button>
               </Link>
