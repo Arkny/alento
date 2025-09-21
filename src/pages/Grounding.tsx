@@ -26,7 +26,7 @@ const Grounding = () => {
             <CardHeader>
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-primary/10">
-                  <Brain className="h-6 w-6 text-primary" />
+                  <Brain className="h-6 w-6 text-white" />
                 </div>
                 <div>
                   <CardTitle className="text-white">Grounding 5,4,3,2,1</CardTitle>
