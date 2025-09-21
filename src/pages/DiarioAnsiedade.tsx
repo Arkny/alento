@@ -103,25 +103,20 @@ const DiarioAnsiedade = () => {
         {/* Back Button */}
         <div className="flex justify-start mb-4">
           <Link to="/">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="text-foreground hover:bg-white/20 transition-colors duration-200"
-            >
-              <ChevronLeft className="h-4 w-4 mr-1" />
-              Voltar
-            </Button>
+            <button className="p-2 sm:p-3 bg-surface-overlay/80 rounded-full backdrop-blur-sm hover:bg-surface-overlay transition-colors">
+              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+            </button>
           </Link>
         </div>
 
         {/* Main Content */}
         <div className="max-w-2xl mx-auto">
-          <Card className="bg-white/80 backdrop-blur-sm border-white/30 shadow-lg">
+          <Card className="bg-black/50 backdrop-blur-sm border-white/20 shadow-lg">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl font-bold text-foreground">
+              <CardTitle className="text-2xl font-bold text-white">
                 Diário da Ansiedade
               </CardTitle>
-              <p className="text-muted-foreground">
+              <p className="text-white/80">
                 Registre seus episódios para acompanhar padrões e gatilhos
               </p>
             </CardHeader>
@@ -136,7 +131,7 @@ const DiarioAnsiedade = () => {
                       name="date"
                       render={({ field }) => (
                         <FormItem className="flex flex-col">
-                          <FormLabel className="flex items-center gap-2">
+                          <FormLabel className="flex items-center gap-2 text-white">
                             <Calendar className="h-4 w-4" />
                             Data
                           </FormLabel>
@@ -179,7 +174,7 @@ const DiarioAnsiedade = () => {
                       name="time"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="flex items-center gap-2">
+                          <FormLabel className="flex items-center gap-2 text-white">
                             <Clock className="h-4 w-4" />
                             Horário
                           </FormLabel>
@@ -198,7 +193,7 @@ const DiarioAnsiedade = () => {
                     name="duration"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Duração da crise</FormLabel>
+                        <FormLabel className="text-white">Duração da crise</FormLabel>
                         <FormControl>
                           <Input placeholder="Ex: 15 minutos, 1 hora..." {...field} />
                         </FormControl>
@@ -213,7 +208,7 @@ const DiarioAnsiedade = () => {
                     name="location"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="flex items-center gap-2">
+                        <FormLabel className="flex items-center gap-2 text-white">
                           <MapPin className="h-4 w-4" />
                           Onde você estava?
                         </FormLabel>
@@ -257,7 +252,7 @@ const DiarioAnsiedade = () => {
                     name="trigger"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>O que desencadeou a ansiedade?</FormLabel>
+                        <FormLabel className="text-white">O que desencadeou a ansiedade?</FormLabel>
                         <FormControl>
                           <Textarea 
                             placeholder="Descreva o que aconteceu ou o que você estava pensando..."
@@ -276,7 +271,7 @@ const DiarioAnsiedade = () => {
                     name="emotion"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Que emoção você sentiu?</FormLabel>
+                        <FormLabel className="text-white">Que emoção você sentiu?</FormLabel>
                         
                         {/* Sugestões de emoção */}
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
@@ -317,7 +312,7 @@ const DiarioAnsiedade = () => {
                     name="intensity"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Intensidade da emoção (1-10)</FormLabel>
+                        <FormLabel className="text-white">Intensidade da emoção (1-10)</FormLabel>
                         <FormControl>
                           <RadioGroup
                             onValueChange={field.onChange}
@@ -327,7 +322,7 @@ const DiarioAnsiedade = () => {
                             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
                               <div key={num} className="flex flex-col items-center space-y-2">
                                 <RadioGroupItem value={num.toString()} id={`intensity-${num}`} />
-                                <Label htmlFor={`intensity-${num}`} className="text-sm">
+                                <Label htmlFor={`intensity-${num}`} className="text-sm text-white">
                                   {num}
                                 </Label>
                               </div>
