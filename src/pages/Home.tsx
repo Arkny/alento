@@ -42,12 +42,16 @@ const Home = () => {
       <div className="relative z-10">
         <button
           onClick={handleCircleClick}
-          className="transition-all duration-700 ease-in-out transform hover:scale-105 focus:outline-none"
+          className="transition-all duration-700 ease-in-out transform hover:scale-105 focus:outline-none active:scale-95"
         >
           <img
             src={isExpanded ? blobShape : circleShape}
             alt="Central shape"
-            className="w-64 h-64 sm:w-80 sm:h-80 object-contain opacity-20 transition-all duration-700"
+            className={`w-64 h-64 sm:w-80 sm:h-80 object-contain opacity-20 transition-all duration-700 ease-in-out ${
+              isExpanded 
+                ? 'rotate-12 scale-110 opacity-30' 
+                : 'rotate-0 scale-100 opacity-20'
+            }`}
           />
         </button>
       </div>
