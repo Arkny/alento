@@ -15,8 +15,8 @@ const Grounding = () => {
             </Button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-black/60">Grounding</h1>
-            <p className="text-black/60">Exercícios para conectar você ao presente</p>
+            <h1 className="text-3xl font-bold text-black">Grounding</h1>
+            <p className="text-black">Exercícios para conectar você ao presente</p>
           </div>
         </div>
 
@@ -30,18 +30,18 @@ const Grounding = () => {
                 </div>
                 <div>
                   <CardTitle className="text-white">Grounding 5,4,3,2,1</CardTitle>
-                  <CardDescription className="text-white/80">
+                  <CardDescription className="text-white">
                     Técnica sensorial para trazer você de volta ao momento presente
                   </CardDescription>
                 </div>
               </div>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-white/70 mb-4">
+              <p className="text-sm text-white mb-4">
                 Use seus cinco sentidos para se conectar com o ambiente ao seu redor. 
                 Este exercício ajuda a reduzir ansiedade e focar no presente.
               </p>
-              <div className="flex items-center gap-2 text-xs text-white/60 mb-4">
+              <div className="flex items-center gap-2 text-xs text-white mb-4">
                 <Heart className="h-4 w-4" />
                 <span>Duração: 5-10 minutos</span>
               </div>
@@ -54,8 +54,8 @@ const Grounding = () => {
           {/* Placeholder for future exercises */}
           <Card className="bg-black/30 backdrop-blur-sm border-white/20">
             <CardHeader>
-              <CardTitle className="text-white/50">Mais exercícios em breve...</CardTitle>
-              <CardDescription className="text-white/40">
+              <CardTitle className="text-white">Mais exercícios em breve...</CardTitle>
+              <CardDescription className="text-white">
                 Novos exercícios de grounding serão adicionados regularmente
               </CardDescription>
             </CardHeader>
