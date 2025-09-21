@@ -141,7 +141,7 @@ const DiarioAnsiedade = () => {
                                 <Button
                                   variant="outline"
                                   className={cn(
-                                    "w-full pl-3 text-left font-normal bg-black/50 border-white/20 text-white hover:bg-black/60",
+                                    "w-full pl-3 text-left font-normal bg-black/40 border-white/20 text-white hover:bg-black/50",
                                     !field.value && "text-white/70"
                                   )}
                                 >
@@ -179,7 +179,7 @@ const DiarioAnsiedade = () => {
                             Horário
                           </FormLabel>
                           <FormControl>
-                            <Input type="time" className="bg-black/50 border-white/20 text-white placeholder:text-white/70" {...field} />
+                            <Input type="time" className="bg-black/40 border-white/20 text-white placeholder:text-white/70" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -195,7 +195,7 @@ const DiarioAnsiedade = () => {
                       <FormItem>
                         <FormLabel className="text-white">Duração da crise</FormLabel>
                         <FormControl>
-                          <Input placeholder="Ex: 15 minutos, 1 hora..." className="bg-black/50 border-white/20 text-white placeholder:text-white/70" {...field} />
+                          <Input placeholder="Ex: 15 minutos, 1 hora..." className="bg-black/40 border-white/20 text-white placeholder:text-white/70" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -224,7 +224,7 @@ const DiarioAnsiedade = () => {
                               className={`flex flex-col gap-1 h-16 ${
                                 selectedLocation === location.label 
                                   ? "bg-primary text-white" 
-                                  : "bg-black/50 border-white/20 text-white hover:bg-black/60"
+                                  : "bg-black/40 border-white/20 text-white hover:bg-black/50"
                               }`}
                               onClick={() => handleLocationSelect(location.label)}
                             >
@@ -237,7 +237,7 @@ const DiarioAnsiedade = () => {
                         <FormControl>
                           <Input 
                             placeholder="Ou descreva o local..." 
-                            className="bg-black/50 border-white/20 text-white placeholder:text-white/70"
+                            className="bg-black/40 border-white/20 text-white placeholder:text-white/70"
                             {...field}
                             value={selectedLocation || field.value}
                             onChange={(e) => {
@@ -261,7 +261,7 @@ const DiarioAnsiedade = () => {
                         <FormControl>
                           <Textarea 
                             placeholder="Descreva o que aconteceu ou o que você estava pensando..."
-                            className="min-h-[100px] bg-black/50 border-white/20 text-white placeholder:text-white/70"
+                            className="min-h-[100px] bg-black/40 border-white/20 text-white placeholder:text-white/70"
                             {...field}
                           />
                         </FormControl>
@@ -289,7 +289,7 @@ const DiarioAnsiedade = () => {
                               className={`flex items-center gap-2 h-12 ${
                                 selectedEmotion === emotion.label 
                                   ? "bg-primary text-white" 
-                                  : "bg-black/50 border-white/20 text-white hover:bg-black/60"
+                                  : "bg-black/40 border-white/20 text-white hover:bg-black/50"
                               }`}
                               onClick={() => handleEmotionSelect(emotion.label)}
                             >
@@ -302,7 +302,7 @@ const DiarioAnsiedade = () => {
                         <FormControl>
                           <Input 
                             placeholder="Ou descreva outra emoção..." 
-                            className="bg-black/50 border-white/20 text-white placeholder:text-white/70"
+                            className="bg-black/40 border-white/20 text-white placeholder:text-white/70"
                             {...field}
                             value={selectedEmotion || field.value}
                             onChange={(e) => {
