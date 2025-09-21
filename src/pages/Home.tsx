@@ -3,25 +3,18 @@ import { useNavigate } from "react-router-dom";
 import circleShape from "@/assets/circle-shape.png";
 import blobShape from "@/assets/blob-shape.png";
 import { 
-  User, 
-  FileText, 
-  Calendar, 
-  Settings, 
-  Info, 
-  MessageSquare,
-  Bell,
-  Map
+  Brain
 } from "lucide-react";
 
 const navigationItems = [
-  { id: 'informativo', label: 'Informativo', icon: Info, path: '/informativo' },
-  { id: 'perfil', label: 'Perfil', icon: User, path: '/perfil' },
-  { id: 'agenda', label: 'Agenda', icon: Calendar, path: '/agenda' },
-  { id: 'documentos', label: 'Documentos', icon: FileText, path: '/documentos' },
-  { id: 'chat', label: 'Chat', icon: MessageSquare, path: '/chat' },
-  { id: 'notificacoes', label: 'Notificações', icon: Bell, path: '/notificacoes' },
-  { id: 'mapa', label: 'Mapa', icon: Map, path: '/mapa' },
-  { id: 'configuracoes', label: 'Configurações', icon: Settings, path: '/configuracoes' },
+  { id: 'grounding', label: 'Grounding', icon: Brain, path: '/grounding' },
+  { id: 'placeholder1', label: 'Em breve', icon: null, path: '#' },
+  { id: 'placeholder2', label: 'Em breve', icon: null, path: '#' },
+  { id: 'placeholder3', label: 'Em breve', icon: null, path: '#' },
+  { id: 'placeholder4', label: 'Em breve', icon: null, path: '#' },
+  { id: 'placeholder5', label: 'Em breve', icon: null, path: '#' },
+  { id: 'placeholder6', label: 'Em breve', icon: null, path: '#' },
+  { id: 'placeholder7', label: 'Em breve', icon: null, path: '#' },
 ];
 
 const Home = () => {
@@ -76,8 +69,11 @@ const Home = () => {
                     top: `calc(50% + ${y}px - 3rem)`,
                     animationDelay: `${index * 100}ms`,
                   }}
+                  disabled={!item.icon}
                 >
-                  <item.icon className="w-10 h-10 sm:w-12 sm:h-12 text-white group-hover:scale-110 transition-transform duration-200" />
+                  {item.icon && (
+                    <item.icon className="w-10 h-10 sm:w-12 sm:h-12 text-white group-hover:scale-110 transition-transform duration-200" />
+                  )}
                   
                   {/* Label */}
                   <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
