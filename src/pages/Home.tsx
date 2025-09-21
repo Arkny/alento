@@ -66,14 +66,14 @@ const Home = () => {
                 <button
                   key={item.id}
                   onClick={() => handleNavigationClick(item.path)}
-                  className="absolute w-16 h-16 sm:w-20 sm:h-20 bg-black/20 rounded-full flex items-center justify-center hover:bg-black/30 transition-all duration-300 animate-fade-in backdrop-blur-sm group"
+                  className="absolute w-32 h-32 sm:w-40 sm:h-40 bg-black/20 rounded-full flex items-center justify-center hover:bg-black/30 transition-all duration-300 animate-fade-in backdrop-blur-sm group"
                   style={{
-                    left: `calc(50% + ${x}px - 2rem)`,
-                    top: `calc(50% + ${y}px - 2rem)`,
+                    left: `calc(50% + ${x}px - 4rem)`,
+                    top: `calc(50% + ${y}px - 4rem)`,
                     animationDelay: `${index * 100}ms`,
                   }}
                 >
-                  <item.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white group-hover:scale-110 transition-transform duration-200" />
+                  <item.icon className="w-12 h-12 sm:w-16 sm:h-16 text-white group-hover:scale-110 transition-transform duration-200" />
                   
                   {/* Label */}
                   <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
