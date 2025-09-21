@@ -29,19 +29,19 @@ const Grounding = () => {
                   <Brain className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <CardTitle>Grounding 5,4,3,2,1</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="text-white">Grounding 5,4,3,2,1</CardTitle>
+                  <CardDescription className="text-white/80">
                     Técnica sensorial para trazer você de volta ao momento presente
                   </CardDescription>
                 </div>
               </div>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">
+              <p className="text-sm text-white/70 mb-4">
                 Use seus cinco sentidos para se conectar com o ambiente ao seu redor. 
                 Este exercício ajuda a reduzir ansiedade e focar no presente.
               </p>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">
+              <div className="flex items-center gap-2 text-xs text-white/60 mb-4">
                 <Heart className="h-4 w-4" />
                 <span>Duração: 5-10 minutos</span>
               </div>
