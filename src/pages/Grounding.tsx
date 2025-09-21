@@ -15,8 +15,8 @@ const Grounding = () => {
             </Button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Grounding</h1>
-            <p className="text-muted-foreground">Exercícios para conectar você ao presente</p>
+            <h1 className="text-3xl font-bold text-white">Grounding</h1>
+            <p className="text-white/80">Exercícios para conectar você ao presente</p>
           </div>
         </div>
 
@@ -54,8 +54,8 @@ const Grounding = () => {
           {/* Placeholder for future exercises */}
           <Card className="opacity-50">
             <CardHeader>
-              <CardTitle className="text-muted-foreground">Mais exercícios em breve...</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-white/50">Mais exercícios em breve...</CardTitle>
+              <CardDescription className="text-white/40">
                 Novos exercícios de grounding serão adicionados regularmente
               </CardDescription>
             </CardHeader>
