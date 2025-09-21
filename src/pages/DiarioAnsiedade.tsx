@@ -113,7 +113,7 @@ const DiarioAnsiedade = () => {
         <div className="max-w-2xl mx-auto">
           <Card className="bg-black/30 backdrop-blur-sm border-white/20 shadow-lg">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl font-bold text-white">
+              <CardTitle className="text-3xl font-bold text-white">
                 Diário da Ansiedade
               </CardTitle>
               <p className="text-white/80">
