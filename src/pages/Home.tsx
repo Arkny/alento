@@ -4,13 +4,14 @@ import circleShape from "@/assets/circle-shape.png";
 import blobShape from "@/assets/blob-shape.png";
 import { 
   Brain,
-  Info
+  Info,
+  BookOpen
 } from "lucide-react";
 
 const navigationItems = [
   { id: 'grounding', label: 'Grounding', icon: Brain, path: '/grounding' },
   { id: 'informativo', label: 'Informativo', icon: Info, path: '/informativo' },
-  { id: 'placeholder1', label: 'Em breve', icon: null, path: '#' },
+  { id: 'diario', label: 'Diário da Ansiedade', icon: BookOpen, path: '/diario-ansiedade' },
   { id: 'placeholder2', label: 'Em breve', icon: null, path: '#' },
   { id: 'placeholder3', label: 'Em breve', icon: null, path: '#' },
   { id: 'placeholder4', label: 'Em breve', icon: null, path: '#' },
