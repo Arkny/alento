@@ -5,8 +5,8 @@ import { ChevronLeft, Brain, Heart } from "lucide-react";
 
 const Grounding = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--gradient-start))] via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))] p-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--gradient-start))] via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))]">
+      <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-8">
         {/* Back Button */}
         <div className="flex justify-start mb-4">
           <Link to="/">
@@ -25,7 +25,7 @@ const Grounding = () => {
         </div>
 
         {/* Exercises Library */}
-        <div className="grid gap-6">
+        <div className="max-w-4xl mx-auto grid gap-6">
           <Card className="hover:shadow-lg transition-shadow duration-300 bg-black/50 backdrop-blur-sm border-white/20">
             <CardHeader>
               <div className="flex items-center gap-3">
