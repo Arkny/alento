@@ -77,16 +77,16 @@ const Grounding543221 = () => {
 
   if (isCompleted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[hsl(var(--gradient-start))] via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))] p-4 flex items-center justify-center">
-        <Card className="max-w-md w-full text-center">
+      <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--gradient-start))] via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))] p-4 flex items-center justify-center">
+        <Card className="max-w-md w-full text-center bg-black/50 backdrop-blur-sm border-white/20">
           <CardHeader>
-            <div className="mx-auto mb-4 p-3 rounded-full bg-green-100">
-              <CheckCircle className="h-8 w-8 text-green-600" />
+            <div className="mx-auto mb-4 p-3 rounded-full bg-primary/60">
+              <CheckCircle className="h-8 w-8 text-white" />
             </div>
-            <CardTitle className="text-2xl">Exercício Concluído!</CardTitle>
+            <CardTitle className="text-2xl text-white">Exercício Concluído!</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-muted-foreground">
+            <p className="text-white">
               Parabéns! Você completou o exercício de grounding 5,4,3,2,1. 
               Esperamos que se sinta mais presente e conectado.
             </p>
@@ -105,7 +105,7 @@ const Grounding543221 = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[hsl(var(--gradient-start))] via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))] p-4">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--gradient-start))] via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))] p-4">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="flex items-center gap-4 mb-6">
@@ -115,8 +115,8 @@ const Grounding543221 = () => {
             </Button>
           </Link>
           <div className="flex-1">
-            <h1 className="text-xl font-semibold">Grounding 5,4,3,2,1</h1>
-            <p className="text-sm text-muted-foreground">
+            <h1 className="text-xl font-semibold text-black/60">Grounding 5,4,3,2,1</h1>
+            <p className="text-sm text-black/60">
               Etapa {currentStep + 1} de {steps.length}
             </p>
           </div>
@@ -128,16 +128,16 @@ const Grounding543221 = () => {
         </div>
 
         {/* Main Content */}
-        <Card className="mb-6">
+        <Card className="mb-6 bg-black/50 backdrop-blur-sm border-white/20">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-              <span className="text-2xl font-bold text-primary">{currentStepData.number}</span>
+            <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-primary/60 flex items-center justify-center">
+              <span className="text-2xl font-bold text-white">{currentStepData.number}</span>
             </div>
-            <CardTitle className="text-xl">{currentStepData.title}</CardTitle>
-            <p className="text-muted-foreground">{currentStepData.description}</p>
+            <CardTitle className="text-xl text-white">{currentStepData.title}</CardTitle>
+            <p className="text-white">{currentStepData.description}</p>
           </CardHeader>
           <CardContent className="text-center space-y-6">
-            <p className="text-sm">{currentStepData.instruction}</p>
+            <p className="text-sm text-white">{currentStepData.instruction}</p>
             
             {/* Counter */}
             <div className="flex items-center justify-center gap-4">
@@ -150,7 +150,7 @@ const Grounding543221 = () => {
                 <Minus className="h-4 w-4" />
               </Button>
               
-              <div className="text-4xl font-bold text-primary min-w-[80px]">
+              <div className="text-4xl font-bold text-white min-w-[80px]">
                 {counter}
               </div>
               
@@ -164,7 +164,7 @@ const Grounding543221 = () => {
               </Button>
             </div>
 
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-white">
               {counter} de {maxCount} identificados
             </div>
           </CardContent>
