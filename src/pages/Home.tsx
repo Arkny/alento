@@ -58,7 +58,7 @@ const Home = () => {
           <div className="relative w-[500px] h-[500px] sm:w-[600px] sm:h-[600px]">
             {navigationItems.map((item, index) => {
               const angle = (index * 360) / navigationItems.length;
-              const radius = 200;
+              const radius = 280;
               const x = Math.cos((angle - 90) * (Math.PI / 180)) * radius;
               const y = Math.sin((angle - 90) * (Math.PI / 180)) * radius;
 
