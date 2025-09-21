@@ -22,7 +22,7 @@ const Grounding = () => {
 
         {/* Exercises Library */}
         <div className="grid gap-6">
-          <Card className="hover:shadow-lg transition-shadow duration-300 bg-black/30 backdrop-blur-sm border-white/20">
+          <Card className="hover:shadow-lg transition-shadow duration-300 bg-black/50 backdrop-blur-sm border-white/20">
             <CardHeader>
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-primary/60">
@@ -52,7 +52,7 @@ const Grounding = () => {
           </Card>
 
           {/* Placeholder for future exercises */}
-          <Card className="bg-black/30 backdrop-blur-sm border-white/20">
+          <Card className="bg-black/50 backdrop-blur-sm border-white/20">
             <CardHeader>
               <CardTitle className="text-white">Mais exercícios em breve...</CardTitle>
               <CardDescription className="text-white">
