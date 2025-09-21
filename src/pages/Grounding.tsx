@@ -52,7 +52,7 @@ const Grounding = () => {
           </Card>
 
           {/* Placeholder for future exercises */}
-          <Card className="opacity-50">
+          <Card className="bg-black/30 backdrop-blur-sm border-white/20">
             <CardHeader>
               <CardTitle className="text-white/50">Mais exercícios em breve...</CardTitle>
               <CardDescription className="text-white/40">
