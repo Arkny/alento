@@ -25,7 +25,7 @@ const Grounding = () => {
           <Card className="hover:shadow-lg transition-shadow duration-300 bg-black/30 backdrop-blur-sm border-white/20">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10">
+                <div className="p-2 rounded-lg bg-primary">
                   <Brain className="h-6 w-6 text-primary" />
                 </div>
                 <div>
