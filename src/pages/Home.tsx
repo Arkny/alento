@@ -11,6 +11,7 @@ import {
   Heart,
   Star
 } from "lucide-react";
+import blobShape from "../assets/blob-shape.png";
 
 interface NavigationItem {
   id: string;
@@ -57,87 +58,51 @@ export default function Home() {
       <div className="relative z-10 flex items-center justify-center min-h-screen">
         <div className="flex flex-col items-center">
           
-          {/* Central Orb */}
-          <div className="relative">
-            <AnimatePresence>
-              {!isExpanded && (
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="relative"
-                >
-                  <motion.button
-                    className="w-36 h-36 sm:w-48 sm:h-48 bg-black/20 backdrop-blur-sm rounded-full shadow-2xl flex items-center justify-center cursor-pointer border border-white/20"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setIsExpanded(true)}
+            {/* Central Orb */}
+            <div className="relative">
+              <AnimatePresence>
+                {!isExpanded && (
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0, opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="relative"
                   >
-                    <div className="text-white/80 text-lg sm:text-xl font-light">
-                      Toque aqui
-                    </div>
-                  </motion.button>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                    <motion.button
+                      className="w-36 h-36 sm:w-48 sm:h-48 bg-black/20 backdrop-blur-sm rounded-full shadow-2xl flex items-center justify-center cursor-pointer border border-white/20"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setIsExpanded(true)}
+                    >
+                      <div className="text-white/80 text-lg sm:text-xl font-light">
+                        Toque aqui
+                      </div>
+                    </motion.button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-            {/* Expanded Navigation */}
-            <AnimatePresence>
-              {isExpanded && (
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="relative"
-                >
-                  {/* Central Close Button */}
-                  <motion.button
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-black/40 backdrop-blur-sm rounded-full shadow-xl flex items-center justify-center cursor-pointer border border-white/20 z-20"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
+              {/* Expanded Blob Shape */}
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 0.2 }}
+                    exit={{ scale: 0, opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="relative cursor-pointer"
                     onClick={() => setIsExpanded(false)}
                   >
-                    <div className="w-4 h-4 border-2 border-white/80 rounded-full" />
-                  </motion.button>
-
-                  {/* Navigation Items in Circle */}
-                  <div className="relative w-80 h-80 sm:w-96 sm:h-96">
-                    {navigationItems.map((item, index) => {
-                      const angle = (index * 360) / navigationItems.length;
-                      const radius = 140;
-                      const x = Math.cos((angle - 90) * (Math.PI / 180)) * radius;
-                      const y = Math.sin((angle - 90) * (Math.PI / 180)) * radius;
-                      
-                      return (
-                        <motion.button
-                          key={item.id}
-                          className="absolute w-14 h-14 sm:w-16 sm:h-16 bg-black/20 rounded-full shadow-lg flex items-center justify-center cursor-pointer border-2 border-white/30"
-                          style={{
-                            left: `calc(50% + ${x}px - 28px)`,
-                            top: `calc(50% + ${y}px - 28px)`,
-                          }}
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          transition={{ 
-                            delay: index * 0.1,
-                            duration: 0.3,
-                            ease: "easeOut"
-                          }}
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          onClick={() => handleItemClick(item.path)}
-                        >
-                          <item.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                        </motion.button>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                    <img 
+                      src={blobShape} 
+                      alt="Blob shape" 
+                      className="w-96 h-96 sm:w-[480px] sm:h-[480px] object-contain"
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
           {/* Dots Indicator */}
           <motion.div 
