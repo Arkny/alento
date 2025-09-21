@@ -3,18 +3,19 @@ import { useNavigate } from "react-router-dom";
 import circleShape from "@/assets/circle-shape.png";
 import blobShape from "@/assets/blob-shape.png";
 import { 
-  Brain
+  Brain,
+  Info
 } from "lucide-react";
 
 const navigationItems = [
   { id: 'grounding', label: 'Grounding', icon: Brain, path: '/grounding' },
+  { id: 'informativo', label: 'Informativo', icon: Info, path: '/informativo' },
   { id: 'placeholder1', label: 'Em breve', icon: null, path: '#' },
   { id: 'placeholder2', label: 'Em breve', icon: null, path: '#' },
   { id: 'placeholder3', label: 'Em breve', icon: null, path: '#' },
   { id: 'placeholder4', label: 'Em breve', icon: null, path: '#' },
   { id: 'placeholder5', label: 'Em breve', icon: null, path: '#' },
   { id: 'placeholder6', label: 'Em breve', icon: null, path: '#' },
-  { id: 'placeholder7', label: 'Em breve', icon: null, path: '#' },
 ];
 
 const Home = () => {
