@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Brain, Heart } from "lucide-react";
+import { ChevronLeft, Brain, Heart } from "lucide-react";
 
 const Grounding = () => {
   return (
@@ -11,7 +11,7 @@ const Grounding = () => {
         <div className="flex justify-start mb-4">
           <Link to="/">
             <button className="p-2 sm:p-3 bg-surface-overlay/80 rounded-full backdrop-blur-sm hover:bg-surface-overlay transition-colors">
-              <ArrowLeft className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
             </button>
           </Link>
         </div>
