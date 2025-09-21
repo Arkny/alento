@@ -15,8 +15,8 @@ const Grounding = () => {
             </Button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-white">Grounding</h1>
-            <p className="text-white/80">Exercícios para conectar você ao presente</p>
+            <h1 className="text-3xl font-bold text-black/60">Grounding</h1>
+            <p className="text-black/60">Exercícios para conectar você ao presente</p>
           </div>
         </div>
 
