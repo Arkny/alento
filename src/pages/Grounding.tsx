@@ -7,14 +7,18 @@ const Grounding = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--gradient-start))] via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))] p-4">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
+        {/* Back Button */}
+        <div className="flex justify-start mb-4">
           <Link to="/">
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
+            <button className="p-2 sm:p-3 bg-surface-overlay/80 rounded-full backdrop-blur-sm hover:bg-surface-overlay transition-colors">
+              <ArrowLeft className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+            </button>
           </Link>
-          <div>
+        </div>
+        
+        {/* Header */}
+        <div className="mb-8">
+          <div className="text-center">
             <h1 className="text-3xl font-bold text-black/60">Grounding</h1>
             <p className="text-black/60">Exercícios para conectar você ao presente</p>
           </div>
