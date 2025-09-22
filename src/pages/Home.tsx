@@ -83,7 +83,7 @@ const Home = () => {
                   style={{
                     left: `calc(50% + ${x}px - 3rem)`,
                     top: `calc(50% + ${y}px - 3rem)`,
-                    animationDelay: isClosing ? `${(navigationItems.length - 1 - index) * 50}ms` : `${index * 150}ms`,
+                    animationDelay: isClosing ? '0ms' : `${index * 150}ms`,
                   }}
                   disabled={!item.icon}
                 >
