@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChevronLeft, Brain, Heart } from "lucide-react";
+import { ChevronLeft, Brain, Heart, List } from "lucide-react";
 
 const Grounding = () => {
   return (
@@ -50,6 +50,35 @@ const Grounding = () => {
                 <span>Duração: 5-10 minutos</span>
               </div>
               <Link to="/grounding/5-4-3-2-1">
+                <Button className="w-full">Começar Exercício</Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow duration-300 bg-black/50 backdrop-blur-sm border-white/20">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-primary/60">
+                  <List className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <CardTitle className="text-white">Exercício de Categorias</CardTitle>
+                  <CardDescription className="text-white">
+                    Liste itens de diferentes categorias para focar seus pensamentos
+                  </CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-white mb-4">
+                Uma técnica de aterramento que ajuda a desviar o foco de situações de crise, 
+                concentrando a mente em listas organizadas de diferentes categorias.
+              </p>
+              <div className="flex items-center gap-2 text-xs text-white mb-4">
+                <Heart className="h-4 w-4" />
+                <span>Duração: 10-15 minutos</span>
+              </div>
+              <Link to="/grounding/categorias">
                 <Button className="w-full">Começar Exercício</Button>
               </Link>
             </CardContent>
