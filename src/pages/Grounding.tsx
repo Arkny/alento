@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChevronLeft, Brain, Heart, List } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { ChevronLeft, Brain, Heart, List, Clock } from "lucide-react";
 import { CategoryFilter, Category } from "@/components/CategoryFilter";
 
 const filterCategories: Category[] = [
@@ -13,6 +14,14 @@ const filterCategories: Category[] = [
   { id: "respiracao", name: "Respiração" },
   { id: "concentracao", name: "Concentração" }
 ];
+
+const categoryNames: Record<string, string> = {
+  percepcao: "Percepção",
+  memoria: "Memória", 
+  relaxamento: "Relaxamento",
+  respiracao: "Respiração",
+  concentracao: "Concentração"
+};
 
 interface Exercise {
   id: string;
@@ -154,8 +163,22 @@ const Grounding = () => {
                   <p className="text-sm text-white mb-4">
                     {exercise.content}
                   </p>
+                  
+                  {/* Tags de categoria */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {exercise.categories.map((categoryId) => (
+                      <Badge 
+                        key={categoryId}
+                        variant="secondary" 
+                        className="bg-white/20 text-white hover:bg-white/30 text-xs"
+                      >
+                        {categoryNames[categoryId]}
+                      </Badge>
+                    ))}
+                  </div>
+                  
                   <div className="flex items-center gap-2 text-xs text-white mb-4">
-                    <Heart className="h-4 w-4" />
+                    <Clock className="h-4 w-4" />
                     <span>Duração: {exercise.duration}</span>
                   </div>
                   <Link to={exercise.link}>
