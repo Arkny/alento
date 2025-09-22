@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, Plus, CheckCircle, X } from "lucide-react";
 
 const allCategories = [
@@ -169,21 +170,29 @@ const allCategories = [
   }
 ];
 
-// Função para selecionar 5 categorias aleatórias
-const getRandomCategories = () => {
+// Função para selecionar categorias aleatórias
+const getRandomCategories = (count: number = 5) => {
   const shuffled = [...allCategories].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, 5);
+  return shuffled.slice(0, count);
 };
 
 const GroundingCategories = () => {
-  const [categories] = useState(() => getRandomCategories());
+  const [selectedCount, setSelectedCount] = useState<string>("5");
+  const [hasStarted, setHasStarted] = useState(false);
+  const [categories, setCategories] = useState<typeof allCategories>([]);
   const [currentCategory, setCurrentCategory] = useState(0);
   const [items, setItems] = useState<string[]>([]);
   const [currentInput, setCurrentInput] = useState("");
   const [isCompleted, setIsCompleted] = useState(false);
 
   const currentCategoryData = categories[currentCategory];
-  const progress = (currentCategory / categories.length) * 100;
+  const progress = categories.length > 0 ? (currentCategory / categories.length) * 100 : 0;
+
+  const handleStart = () => {
+    const count = parseInt(selectedCount);
+    setCategories(getRandomCategories(count));
+    setHasStarted(true);
+  };
 
   const handleAddItem = () => {
     if (currentInput.trim()) {
@@ -219,6 +228,52 @@ const GroundingCategories = () => {
       handleAddItem();
     }
   };
+
+  // Tela de seleção de quantidade de categorias
+  if (!hasStarted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-[hsl(var(--gradient-start))] via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))] p-4 flex items-center justify-center">
+        <Card className="max-w-md w-full bg-black/50 backdrop-blur-sm border-white/20">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl text-white">Exercício de Categorias</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <p className="text-white text-center">
+              Quantas categorias você gostaria de listar hoje?
+            </p>
+            
+            <div className="space-y-3">
+              <label className="text-white text-sm font-medium">
+                Número de categorias:
+              </label>
+              <Select value={selectedCount} onValueChange={setSelectedCount}>
+                <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-black/90 border-white/20">
+                  <SelectItem value="5" className="text-white hover:bg-white/10">5 categorias</SelectItem>
+                  <SelectItem value="10" className="text-white hover:bg-white/10">10 categorias</SelectItem>
+                  <SelectItem value="15" className="text-white hover:bg-white/10">15 categorias</SelectItem>
+                  <SelectItem value="20" className="text-white hover:bg-white/10">20 categorias</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <Button onClick={handleStart} className="w-full">
+                Começar Exercício
+              </Button>
+              <Link to="/grounding">
+                <Button variant="outline" className="w-full">
+                  Voltar
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   if (isCompleted) {
     return (
