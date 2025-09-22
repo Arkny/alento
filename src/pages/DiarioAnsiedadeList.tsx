@@ -155,7 +155,7 @@ const DiarioAnsiedadeList = () => {
                             variant="outline" 
                             className={`${getIntensityColor(entry.intensity)} border`}
                           >
-                            Intensidade {entry.intensity}/5
+                            Intensidade {entry.intensity}/10
                           </Badge>
                           <Button
                             variant="ghost"
