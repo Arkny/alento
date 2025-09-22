@@ -78,12 +78,10 @@ const DiarioAnsiedadeList = () => {
       <div className="w-full max-w-4xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <Link
-            to="/"
-            className="inline-flex items-center text-white hover:text-white/80 transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5 mr-1" />
-            Voltar
+          <Link to="/">
+            <button className="p-2 sm:p-3 bg-surface-overlay/80 rounded-full backdrop-blur-sm hover:bg-surface-overlay transition-colors">
+              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+            </button>
           </Link>
 
           <Link to="/diario-ansiedade/novo">
