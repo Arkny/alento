@@ -7,7 +7,8 @@ import Index from "./pages/Index";
 import Home from "./pages/Home";
 import Grounding from "./pages/Grounding";
 import Grounding543221 from "./pages/Grounding543221";
-import DiarioAnsiedade from "./pages/DiarioAnsiedade";
+import DiarioAnsiedadeList from "./pages/DiarioAnsiedadeList";
+import DiarioAnsiedadeForm from "./pages/DiarioAnsiedadeForm";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,7 +24,8 @@ const App = () => (
           <Route path="/informativo" element={<Index />} />
           <Route path="/grounding" element={<Grounding />} />
           <Route path="/grounding/5-4-3-2-1" element={<Grounding543221 />} />
-          <Route path="/diario-ansiedade" element={<DiarioAnsiedade />} />
+          <Route path="/diario-ansiedade" element={<DiarioAnsiedadeList />} />
+          <Route path="/diario-ansiedade/novo" element={<DiarioAnsiedadeForm />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

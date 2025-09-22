@@ -61,7 +61,7 @@ const emotionSuggestions = [
   { id: "preocupacao", label: "Preocupação", icon: Heart },
 ];
 
-const DiarioAnsiedade = () => {
+const DiarioAnsiedadeForm = () => {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedEmotion, setSelectedEmotion] = useState("");
   const { toast } = useToast();
@@ -80,11 +80,32 @@ const DiarioAnsiedade = () => {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    const newEntry = {
+      id: Date.now().toString(),
+      ...values,
+      createdAt: new Date()
+    };
+
+    const existingEntries = JSON.parse(localStorage.getItem("anxiety-diary-entries") || "[]");
+    const updatedEntries = [newEntry, ...existingEntries];
+    localStorage.setItem("anxiety-diary-entries", JSON.stringify(updatedEntries));
+
     toast({
       title: "Registro salvo!",
       description: "Seu episódio de ansiedade foi registrado com sucesso.",
     });
+
+    // Resetar o formulário
+    form.reset({
+      time: new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }),
+      duration: "",
+      location: "",
+      trigger: "",
+      emotion: "",
+      intensity: "",
+    });
+    setSelectedLocation("");
+    setSelectedEmotion("");
   };
 
   const handleLocationSelect = (location: string) => {
@@ -102,7 +123,7 @@ const DiarioAnsiedade = () => {
       <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-8">
         {/* Back Button */}
         <div className="flex justify-start mb-4">
-          <Link to="/">
+          <Link to="/diario-ansiedade">
             <button className="p-2 sm:p-3 bg-surface-overlay/80 rounded-full backdrop-blur-sm hover:bg-surface-overlay transition-colors">
               <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
             </button>
@@ -358,4 +379,4 @@ const DiarioAnsiedade = () => {
   );
 };
 
-export default DiarioAnsiedade;
+export default DiarioAnsiedadeForm;
