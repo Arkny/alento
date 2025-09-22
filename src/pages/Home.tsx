@@ -21,10 +21,22 @@ const navigationItems = [
 
 const Home = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const navigate = useNavigate();
 
   const handleCircleClick = () => {
-    setIsExpanded(!isExpanded);
+    if (isExpanded) {
+      // Se está expandido, inicia o processo de fechamento
+      setIsClosing(true);
+      // Aguarda a animação de fade-out completar antes de esconder
+      setTimeout(() => {
+        setIsExpanded(false);
+        setIsClosing(false);
+      }, 300); // Duração da animação fade-out
+    } else {
+      // Se não está expandido, apenas expande
+      setIsExpanded(true);
+    }
   };
 
   const handleNavigationClick = (path: string) => {
@@ -65,11 +77,13 @@ const Home = () => {
                 <button
                   key={item.id}
                   onClick={() => handleNavigationClick(item.path)}
-                  className="absolute w-24 h-24 sm:w-[120px] sm:h-[120px] bg-black/20 rounded-full flex items-center justify-center hover:bg-black/30 transition-all duration-300 opacity-0 animate-fade-in backdrop-blur-sm group"
+                  className={`absolute w-24 h-24 sm:w-[120px] sm:h-[120px] bg-black/20 rounded-full flex items-center justify-center hover:bg-black/30 transition-all duration-300 opacity-0 backdrop-blur-sm group ${
+                    isClosing ? 'animate-fade-out' : 'animate-fade-in'
+                  }`}
                   style={{
                     left: `calc(50% + ${x}px - 3rem)`,
                     top: `calc(50% + ${y}px - 3rem)`,
-                    animationDelay: `${index * 150}ms`,
+                    animationDelay: isClosing ? `${(navigationItems.length - 1 - index) * 50}ms` : `${index * 150}ms`,
                   }}
                   disabled={!item.icon}
                 >
