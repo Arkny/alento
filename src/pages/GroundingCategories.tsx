@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
 import { ArrowLeft, Plus, CheckCircle, X } from "lucide-react";
 
-const categories = [
+const allCategories = [
   {
     title: "Instrumentos Musicais",
     description: "Liste todos os instrumentos musicais que conseguir lembrar",
@@ -31,10 +31,152 @@ const categories = [
     title: "Animais",
     description: "Liste diferentes tipos de animais",
     placeholder: "Ex: cachorro, gato, elefante..."
+  },
+  {
+    title: "Cores",
+    description: "Liste todas as cores que conseguir pensar",
+    placeholder: "Ex: azul, vermelho, amarelo..."
+  },
+  {
+    title: "Profissões",
+    description: "Pense em diferentes profissões e ocupações",
+    placeholder: "Ex: médico, professor, engenheiro..."
+  },
+  {
+    title: "Frutas",
+    description: "Liste diferentes tipos de frutas",
+    placeholder: "Ex: maçã, banana, laranja..."
+  },
+  {
+    title: "Filmes",
+    description: "Pense em filmes que já assistiu ou conhece",
+    placeholder: "Ex: Titanic, Avatar, Vingadores..."
+  },
+  {
+    title: "Cidades Brasileiras",
+    description: "Liste cidades do Brasil que conhece",
+    placeholder: "Ex: São Paulo, Rio de Janeiro, Salvador..."
+  },
+  {
+    title: "Marcas de Carros",
+    description: "Pense em diferentes marcas de automóveis",
+    placeholder: "Ex: Toyota, Ford, Volkswagen..."
+  },
+  {
+    title: "Tipos de Comida",
+    description: "Liste diferentes tipos de alimentos",
+    placeholder: "Ex: pizza, lasanha, hambúrguer..."
+  },
+  {
+    title: "Objetos da Cozinha",
+    description: "Pense em utensílios e objetos de cozinha",
+    placeholder: "Ex: panela, faca, geladeira..."
+  },
+  {
+    title: "Gêneros Musicais",
+    description: "Liste diferentes estilos musicais",
+    placeholder: "Ex: rock, pop, samba..."
+  },
+  {
+    title: "Meios de Transporte",
+    description: "Pense em diferentes formas de se locomover",
+    placeholder: "Ex: carro, bicicleta, avião..."
+  },
+  {
+    title: "Flores",
+    description: "Liste tipos de flores que conhece",
+    placeholder: "Ex: rosa, margarida, girassol..."
+  },
+  {
+    title: "Estados do Brasil",
+    description: "Pense nos estados brasileiros",
+    placeholder: "Ex: São Paulo, Minas Gerais, Bahia..."
+  },
+  {
+    title: "Jogos",
+    description: "Liste jogos digitais ou físicos que conhece",
+    placeholder: "Ex: futebol, xadrez, videogame..."
+  },
+  {
+    title: "Livros",
+    description: "Pense em livros que já leu ou conhece",
+    placeholder: "Ex: Harry Potter, Dom Casmurro..."
+  },
+  {
+    title: "Objetos de Casa",
+    description: "Liste objetos encontrados numa casa",
+    placeholder: "Ex: sofá, mesa, televisão..."
+  },
+  {
+    title: "Roupas",
+    description: "Pense em diferentes peças de vestuário",
+    placeholder: "Ex: camiseta, calça, sapato..."
+  },
+  {
+    title: "Bebidas",
+    description: "Liste diferentes tipos de bebidas",
+    placeholder: "Ex: água, suco, refrigerante..."
+  },
+  {
+    title: "Planetas",
+    description: "Pense nos planetas do sistema solar",
+    placeholder: "Ex: Terra, Marte, Júpiter..."
+  },
+  {
+    title: "Partes do Corpo",
+    description: "Liste partes do corpo humano",
+    placeholder: "Ex: braço, perna, cabeça..."
+  },
+  {
+    title: "Materiais Escolares",
+    description: "Pense em objetos usados na escola",
+    placeholder: "Ex: lápis, caderno, borracha..."
+  },
+  {
+    title: "Temperos",
+    description: "Liste diferentes temperos e condimentos",
+    placeholder: "Ex: sal, pimenta, alho..."
+  },
+  {
+    title: "Emoções",
+    description: "Pense em diferentes sentimentos e emoções",
+    placeholder: "Ex: alegria, tristeza, raiva..."
+  },
+  {
+    title: "Brinquedos",
+    description: "Liste brinquedos que conhece ou já brincou",
+    placeholder: "Ex: boneca, carrinho, bola..."
+  },
+  {
+    title: "Móveis",
+    description: "Pense em diferentes tipos de móveis",
+    placeholder: "Ex: cama, cadeira, armário..."
+  },
+  {
+    title: "Doces",
+    description: "Liste diferentes tipos de doces e sobremesas",
+    placeholder: "Ex: chocolate, bolo, brigadeiro..."
+  },
+  {
+    title: "Fenômenos da Natureza",
+    description: "Pense em eventos e fenômenos naturais",
+    placeholder: "Ex: chuva, vento, trovão..."
+  },
+  {
+    title: "Formas Geométricas",
+    description: "Liste diferentes formas e figuras geométricas",
+    placeholder: "Ex: círculo, quadrado, triângulo..."
   }
 ];
 
+// Função para selecionar 5 categorias aleatórias
+const getRandomCategories = () => {
+  const shuffled = [...allCategories].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 5);
+};
+
 const GroundingCategories = () => {
+  const [categories] = useState(() => getRandomCategories());
   const [currentCategory, setCurrentCategory] = useState(0);
   const [items, setItems] = useState<string[]>([]);
   const [currentInput, setCurrentInput] = useState("");
