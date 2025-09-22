@@ -64,7 +64,7 @@ const Home = () => {
       </div>
 
       {/* Navigation Carousel */}
-      {isExpanded && (
+      {(isExpanded || isClosing) && (
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative w-[500px] h-[500px] sm:w-[600px] sm:h-[600px]">
             {navigationItems.map((item, index) => {
