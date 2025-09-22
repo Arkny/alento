@@ -260,7 +260,7 @@ const GroundingCategories = () => {
             </div>
 
             <div className="flex flex-col gap-3">
-              <Button onClick={handleStart} className="w-full">
+              <Button onClick={handleStart} variant="default" className="w-full">
                 Começar Exercício
               </Button>
               <Link to="/grounding">

@@ -182,7 +182,7 @@ const Grounding = () => {
                     <span>Duração: {exercise.duration}</span>
                   </div>
                   <Link to={exercise.link}>
-                    <Button className="w-full">Começar Exercício</Button>
+                    <Button variant="default" className="w-full">Começar Exercício</Button>
                   </Link>
                 </CardContent>
               </Card>
