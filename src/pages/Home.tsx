@@ -70,7 +70,6 @@ const Home = () => {
                     left: `calc(50% + ${x}px - 3rem)`,
                     top: `calc(50% + ${y}px - 3rem)`,
                     animationDelay: `${index * 150}ms`,
-                    animationFillMode: 'forwards',
                   }}
                   disabled={!item.icon}
                 >
