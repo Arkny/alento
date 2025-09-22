@@ -65,11 +65,12 @@ const Home = () => {
                 <button
                   key={item.id}
                   onClick={() => handleNavigationClick(item.path)}
-                  className="absolute w-24 h-24 sm:w-[120px] sm:h-[120px] bg-black/20 rounded-full flex items-center justify-center hover:bg-black/30 transition-all duration-300 animate-fade-in backdrop-blur-sm group"
+                  className="absolute w-24 h-24 sm:w-[120px] sm:h-[120px] bg-black/20 rounded-full flex items-center justify-center hover:bg-black/30 transition-all duration-300 opacity-0 animate-fade-in backdrop-blur-sm group"
                   style={{
                     left: `calc(50% + ${x}px - 3rem)`,
                     top: `calc(50% + ${y}px - 3rem)`,
-                    animationDelay: `${index * 100}ms`,
+                    animationDelay: `${index * 150}ms`,
+                    animationFillMode: 'forwards',
                   }}
                   disabled={!item.icon}
                 >
