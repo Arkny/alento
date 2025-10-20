@@ -100,10 +100,10 @@ const DiarioAnsiedadeList = () => {
           <CardHeader className="text-center pb-6">
             <CardTitle className="text-3xl font-bold text-white flex items-center justify-center gap-3">
               <Heart className="w-8 h-8" />
-              Diário da Ansiedade
+              Diário de Crise
             </CardTitle>
             <p className="text-white/80 mt-2">
-              Seus registros de ansiedade organizados por data e hora
+              Seus registros de crise organizados por data e hora
             </p>
           </CardHeader>
 

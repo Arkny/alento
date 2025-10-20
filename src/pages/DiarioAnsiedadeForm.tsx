@@ -135,7 +135,7 @@ const DiarioAnsiedadeForm = () => {
           <Card className="bg-black/30 backdrop-blur-sm border-white/20 shadow-lg">
             <CardHeader className="text-center">
               <CardTitle className="text-3xl font-bold text-white">
-                Diário da Ansiedade
+                Diário de Crise
               </CardTitle>
               <p className="text-white/80">
                 Registre seus episódios para acompanhar padrões e gatilhos

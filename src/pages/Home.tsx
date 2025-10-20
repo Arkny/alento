@@ -11,7 +11,7 @@ import {
 const navigationItems = [
   { id: 'grounding', label: 'Grounding', icon: Brain, path: '/grounding' },
   { id: 'informativo', label: 'Informativo', icon: Info, path: '/informativo' },
-  { id: 'diario', label: 'Diário da Ansiedade', icon: BookOpen, path: '/diario-ansiedade' },
+  { id: 'diario', label: 'Diário de Crise', icon: BookOpen, path: '/diario-ansiedade' },
   { id: 'placeholder2', label: 'Em breve', icon: null, path: '#' },
   { id: 'placeholder3', label: 'Em breve', icon: null, path: '#' },
   { id: 'placeholder4', label: 'Em breve', icon: null, path: '#' },
