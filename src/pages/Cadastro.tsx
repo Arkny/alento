@@ -171,13 +171,10 @@ const Cadastro = () => {
             </Button>
           </form>
 
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-white/20" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-transparent px-2 text-white/60">Ou cadastre-se com</span>
-            </div>
+          <div className="flex items-center my-6">
+            <div className="flex-1 border-t border-white/20"></div>
+            <span className="px-4 text-xs uppercase text-white/60">Ou cadastre-se com</span>
+            <div className="flex-1 border-t border-white/20"></div>
           </div>
 
           <Button
