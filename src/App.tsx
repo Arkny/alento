@@ -3,8 +3,12 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Index from "./pages/Index";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Cadastro from "./pages/Cadastro";
 import Grounding from "./pages/Grounding";
 import Grounding543221 from "./pages/Grounding543221";
 import GroundingCategories from "./pages/GroundingCategories";
@@ -20,17 +24,21 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/informativo" element={<Index />} />
-          <Route path="/grounding" element={<Grounding />} />
-          <Route path="/grounding/5-4-3-2-1" element={<Grounding543221 />} />
-          <Route path="/grounding/categorias" element={<GroundingCategories />} />
-          <Route path="/diario-ansiedade" element={<DiarioAnsiedadeList />} />
-          <Route path="/diario-ansiedade/novo" element={<DiarioAnsiedadeForm />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/informativo" element={<ProtectedRoute><Index /></ProtectedRoute>} />
+            <Route path="/grounding" element={<ProtectedRoute><Grounding /></ProtectedRoute>} />
+            <Route path="/grounding/5-4-3-2-1" element={<ProtectedRoute><Grounding543221 /></ProtectedRoute>} />
+            <Route path="/grounding/categorias" element={<ProtectedRoute><GroundingCategories /></ProtectedRoute>} />
+            <Route path="/diario-ansiedade" element={<ProtectedRoute><DiarioAnsiedadeList /></ProtectedRoute>} />
+            <Route path="/diario-ansiedade/novo" element={<ProtectedRoute><DiarioAnsiedadeForm /></ProtectedRoute>} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

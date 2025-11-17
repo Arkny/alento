@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 import circleShape from "@/assets/circle-shape.png";
 import blobShape from "@/assets/blob-shape.png";
 import { 
   Brain,
   Info,
-  BookOpen
+  BookOpen,
+  LogOut
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const navigationItems = [
   { id: 'grounding', label: 'Grounding', icon: Brain, path: '/grounding' },
@@ -23,6 +26,7 @@ const Home = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const navigate = useNavigate();
+  const { signOut } = useAuth();
 
   const handleCircleClick = () => {
     if (isExpanded) {
@@ -45,6 +49,17 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gradient-start via-gradient-middle to-gradient-end flex items-center justify-center relative overflow-hidden">
+      {/* Logout Button */}
+      <div className="absolute top-4 right-4 z-20">
+        <Button
+          variant="outline"
+          onClick={signOut}
+          className="bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm"
+        >
+          <LogOut className="w-4 h-4 mr-2" />
+          Sair
+        </Button>
+      </div>
       {/* Central Shape */}
       <div className="relative z-10">
         <button
