@@ -110,7 +110,7 @@ const Cadastro = () => {
       <Card className="w-full max-w-md bg-black/35 backdrop-blur-sm border-white/20">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <Brain className="w-12 h-12 text-[#50C878]" />
+            <Brain className="w-12 h-12 text-[#50C89F]" />
           </div>
           <CardTitle className="text-3xl font-bold text-white">Cadastrar</CardTitle>
           <CardDescription className="text-white/80">
