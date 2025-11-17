@@ -156,7 +156,7 @@ const Login = () => {
               <span className="w-full border-t border-white/20" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-gradient-to-b from-gradient-start via-gradient-middle to-gradient-end px-2 text-white/60">Ou continue com</span>
+              <span className="bg-transparent px-2 text-white/60">Ou continue com</span>
             </div>
           </div>
 
