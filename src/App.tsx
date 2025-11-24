@@ -14,6 +14,7 @@ import Grounding543221 from "./pages/Grounding543221";
 import GroundingCategories from "./pages/GroundingCategories";
 import DiarioAnsiedadeList from "./pages/DiarioAnsiedadeList";
 import DiarioAnsiedadeForm from "./pages/DiarioAnsiedadeForm";
+import MinhaConta from "./pages/MinhaConta";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/grounding/categorias" element={<ProtectedRoute><GroundingCategories /></ProtectedRoute>} />
             <Route path="/diario-ansiedade" element={<ProtectedRoute><DiarioAnsiedadeList /></ProtectedRoute>} />
             <Route path="/diario-ansiedade/novo" element={<ProtectedRoute><DiarioAnsiedadeForm /></ProtectedRoute>} />
+            <Route path="/minha-conta" element={<ProtectedRoute><MinhaConta /></ProtectedRoute>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

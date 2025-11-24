@@ -7,7 +7,8 @@ import {
   Brain,
   Info,
   BookOpen,
-  LogOut
+  LogOut,
+  User
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -15,7 +16,7 @@ const navigationItems = [
   { id: 'grounding', label: 'Grounding', icon: Brain, path: '/grounding' },
   { id: 'informativo', label: 'Informativo', icon: Info, path: '/informativo' },
   { id: 'diario', label: 'Diário de Crise', icon: BookOpen, path: '/diario-ansiedade' },
-  { id: 'placeholder2', label: 'Em breve', icon: null, path: '#' },
+  { id: 'minha-conta', label: 'Minha Conta', icon: User, path: '/minha-conta' },
   { id: 'placeholder3', label: 'Em breve', icon: null, path: '#' },
   { id: 'placeholder4', label: 'Em breve', icon: null, path: '#' },
   { id: 'placeholder5', label: 'Em breve', icon: null, path: '#' },
