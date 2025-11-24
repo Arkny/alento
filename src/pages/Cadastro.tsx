@@ -72,7 +72,7 @@ const Cadastro = () => {
         description: "Bem-vindo ao aplicativo",
       });
       
-      navigate('/');
+      navigate('/minha-conta');
     } catch (error) {
       if (error instanceof z.ZodError) {
         toast({
