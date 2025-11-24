@@ -14,6 +14,56 @@ export type Database = {
   }
   public: {
     Tables: {
+      anxiety_diary_entries: {
+        Row: {
+          created_at: string
+          date: string
+          duration: string
+          emotion: string
+          id: string
+          intensity: number
+          location: string
+          time: string
+          trigger: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          duration: string
+          emotion: string
+          id?: string
+          intensity: number
+          location: string
+          time: string
+          trigger: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          duration?: string
+          emotion?: string
+          id?: string
+          intensity?: number
+          location?: string
+          time?: string
+          trigger?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "anxiety_diary_entries_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string | null

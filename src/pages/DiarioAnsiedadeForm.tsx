@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { format } from "date-fns";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
 import { 
   ChevronLeft, 
   Calendar,
@@ -64,7 +66,10 @@ const emotionSuggestions = [
 const DiarioAnsiedadeForm = () => {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedEmotion, setSelectedEmotion] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -79,33 +84,50 @@ const DiarioAnsiedadeForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    const newEntry = {
-      id: Date.now().toString(),
-      ...values,
-      createdAt: new Date()
-    };
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    if (!user) {
+      toast({
+        title: "Erro",
+        description: "Você precisa estar logado para salvar registros.",
+        variant: "destructive",
+      });
+      return;
+    }
 
-    const existingEntries = JSON.parse(localStorage.getItem("anxiety-diary-entries") || "[]");
-    const updatedEntries = [newEntry, ...existingEntries];
-    localStorage.setItem("anxiety-diary-entries", JSON.stringify(updatedEntries));
+    setIsSubmitting(true);
 
-    toast({
-      title: "Registro salvo!",
-      description: "Seu episódio de ansiedade foi registrado com sucesso.",
-    });
+    try {
+      const { error } = await supabase
+        .from('anxiety_diary_entries')
+        .insert({
+          user_id: user.id,
+          date: format(values.date, "yyyy-MM-dd"),
+          time: values.time,
+          duration: values.duration,
+          location: values.location,
+          trigger: values.trigger,
+          emotion: values.emotion,
+          intensity: parseInt(values.intensity),
+        });
 
-    // Resetar o formulário
-    form.reset({
-      time: new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }),
-      duration: "",
-      location: "",
-      trigger: "",
-      emotion: "",
-      intensity: "",
-    });
-    setSelectedLocation("");
-    setSelectedEmotion("");
+      if (error) throw error;
+
+      toast({
+        title: "Registro salvo!",
+        description: "Seu episódio de ansiedade foi registrado com sucesso.",
+      });
+
+      navigate('/diario-ansiedade');
+    } catch (error) {
+      console.error('Error saving entry:', error);
+      toast({
+        title: "Erro ao salvar",
+        description: "Não foi possível salvar o registro. Tente novamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleLocationSelect = (location: string) => {
@@ -366,8 +388,8 @@ const DiarioAnsiedadeForm = () => {
                   />
 
                   {/* Submit Button */}
-                  <Button type="submit" className="w-full" size="lg">
-                    Salvar Registro
+                  <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                    {isSubmitting ? "Salvando..." : "Salvar Registro"}
                   </Button>
                 </form>
               </Form>
