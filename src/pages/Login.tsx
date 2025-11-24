@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, Brain } from 'lucide-react';
@@ -20,6 +21,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetLoading, setResetLoading] = useState(false);
+  const [resetDialogOpen, setResetDialogOpen] = useState(false);
 
   useEffect(() => {
     // Check if user is already logged in
@@ -97,6 +101,45 @@ const Login = () => {
     }
   };
 
+  const handleResetPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      const validated = z.string().email().parse(resetEmail);
+      setResetLoading(true);
+
+      const { error } = await supabase.auth.resetPasswordForEmail(validated, {
+        redirectTo: `${window.location.origin}/minha-conta`,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Email enviado!",
+        description: "Verifique sua caixa de entrada para redefinir sua senha",
+      });
+      
+      setResetDialogOpen(false);
+      setResetEmail('');
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Email inválido",
+          description: "Por favor, insira um email válido",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Erro ao enviar email",
+          description: "Não foi possível enviar o email de recuperação",
+          variant: "destructive",
+        });
+      }
+    } finally {
+      setResetLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gradient-start via-gradient-middle to-gradient-end p-4">
       <Card className="w-full max-w-md bg-black/35 backdrop-blur-sm border-white/20">
@@ -150,6 +193,50 @@ const Login = () => {
               )}
             </Button>
           </form>
+
+          <Dialog open={resetDialogOpen} onOpenChange={setResetDialogOpen}>
+            <DialogTrigger asChild>
+              <Button variant="link" className="text-white/80 hover:text-white text-sm mt-2 w-full">
+                Esqueci minha senha
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="bg-black/90 border-white/20 text-white">
+              <DialogHeader>
+                <DialogTitle className="text-white">Recuperar Senha</DialogTitle>
+                <DialogDescription className="text-white/80">
+                  Digite seu email para receber instruções de recuperação
+                </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handleResetPassword} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="reset-email" className="text-white">Email</Label>
+                  <Input
+                    id="reset-email"
+                    type="email"
+                    placeholder="seu@email.com"
+                    value={resetEmail}
+                    onChange={(e) => setResetEmail(e.target.value)}
+                    required
+                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={resetLoading}
+                >
+                  {resetLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Enviando...
+                    </>
+                  ) : (
+                    'Enviar Email'
+                  )}
+                </Button>
+              </form>
+            </DialogContent>
+          </Dialog>
 
           <div className="flex items-center my-6">
             <div className="flex-1 border-t border-white/20"></div>

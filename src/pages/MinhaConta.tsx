@@ -4,15 +4,24 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
-import { Loader2, User, ArrowLeft } from 'lucide-react';
+import { Loader2, User, ArrowLeft, Lock } from 'lucide-react';
 import { z } from 'zod';
 
 const profileSchema = z.object({
   username: z.string().min(3, { message: "O nome de usuário deve ter pelo menos 3 caracteres" }),
   email: z.string().email({ message: "Email inválido" }),
+});
+
+const passwordSchema = z.object({
+  newPassword: z.string().min(6, { message: "A senha deve ter pelo menos 6 caracteres" }),
+  confirmPassword: z.string().min(6, { message: "A senha deve ter pelo menos 6 caracteres" }),
+}).refine((data) => data.newPassword === data.confirmPassword, {
+  message: "As senhas não coincidem",
+  path: ["confirmPassword"],
 });
 
 const MinhaConta = () => {
@@ -23,6 +32,9 @@ const MinhaConta = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [loadingProfile, setLoadingProfile] = useState(true);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordLoading, setPasswordLoading] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -101,6 +113,46 @@ const MinhaConta = () => {
     }
   };
 
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      const validated = passwordSchema.parse({ newPassword, confirmPassword });
+      setPasswordLoading(true);
+
+      const { error } = await supabase.auth.updateUser({
+        password: validated.newPassword,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Senha alterada!",
+        description: "Sua senha foi alterada com sucesso",
+      });
+
+      setNewPassword('');
+      setConfirmPassword('');
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Erro de validação",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      } else {
+        console.error('Erro ao alterar senha:', error);
+        toast({
+          title: "Erro ao alterar senha",
+          description: "Não foi possível alterar sua senha",
+          variant: "destructive",
+        });
+      }
+    } finally {
+      setPasswordLoading(false);
+    }
+  };
+
   if (loadingProfile) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gradient-start via-gradient-middle to-gradient-end">
@@ -170,6 +222,55 @@ const MinhaConta = () => {
               )}
             </Button>
           </form>
+
+          <Separator className="my-6 bg-white/20" />
+
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 text-white">
+              <Lock className="w-5 h-5" />
+              <h3 className="text-lg font-semibold">Alterar Senha</h3>
+            </div>
+            <form onSubmit={handleChangePassword} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="newPassword" className="text-white">Nova Senha</Label>
+                <Input
+                  id="newPassword"
+                  type="password"
+                  placeholder="••••••••"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  required
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword" className="text-white">Confirmar Nova Senha</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="••••••••"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                />
+              </div>
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={passwordLoading}
+              >
+                {passwordLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Alterando...
+                  </>
+                ) : (
+                  'Alterar Senha'
+                )}
+              </Button>
+            </form>
+          </div>
         </CardContent>
       </Card>
     </div>
