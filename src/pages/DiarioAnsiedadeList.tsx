@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
 import { 
   ChevronLeft, 
   Plus,
@@ -32,45 +34,87 @@ interface DiaryEntry {
 
 const DiarioAnsiedadeList = () => {
   const [entries, setEntries] = useState<DiaryEntry[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
+  const { user } = useAuth();
 
   useEffect(() => {
-    const storedEntries = localStorage.getItem("anxiety-diary-entries");
-    if (storedEntries) {
-      const parsedEntries = JSON.parse(storedEntries).map((entry: any) => ({
-        ...entry,
-        date: new Date(entry.date),
-        createdAt: new Date(entry.createdAt)
-      }));
-      // Ordenar por data e hora mais recente
-      parsedEntries.sort((a: DiaryEntry, b: DiaryEntry) => {
-        const dateA = new Date(`${format(a.date, "yyyy-MM-dd")} ${a.time}`);
-        const dateB = new Date(`${format(b.date, "yyyy-MM-dd")} ${b.time}`);
-        return dateB.getTime() - dateA.getTime();
-      });
-      setEntries(parsedEntries);
+    if (user) {
+      loadEntries();
+    } else {
+      setIsLoading(false);
     }
-  }, []);
+  }, [user]);
 
-  const deleteEntry = (id: string) => {
-    const updatedEntries = entries.filter(entry => entry.id !== id);
-    setEntries(updatedEntries);
-    localStorage.setItem("anxiety-diary-entries", JSON.stringify(updatedEntries));
-    toast({
-      title: "Registro excluído",
-      description: "O registro foi removido com sucesso.",
-    });
+  const loadEntries = async () => {
+    if (!user) return;
+
+    try {
+      const { data, error } = await supabase
+        .from('anxiety_diary_entries')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('date', { ascending: false })
+        .order('time', { ascending: false });
+
+      if (error) throw error;
+
+      const parsedEntries = data.map((entry: any) => ({
+        id: entry.id,
+        date: new Date(entry.date),
+        time: entry.time,
+        duration: entry.duration,
+        location: entry.location,
+        trigger: entry.trigger,
+        emotion: entry.emotion,
+        intensity: entry.intensity.toString(),
+        createdAt: new Date(entry.created_at)
+      }));
+
+      setEntries(parsedEntries);
+    } catch (error) {
+      console.error('Error loading entries:', error);
+      toast({
+        title: "Erro ao carregar",
+        description: "Não foi possível carregar seus registros.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const deleteEntry = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('anxiety_diary_entries')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+
+      setEntries(entries.filter(entry => entry.id !== id));
+      toast({
+        title: "Registro excluído",
+        description: "O registro foi removido com sucesso.",
+      });
+    } catch (error) {
+      console.error('Error deleting entry:', error);
+      toast({
+        title: "Erro ao excluir",
+        description: "Não foi possível excluir o registro.",
+        variant: "destructive",
+      });
+    }
   };
 
   const getIntensityColor = (intensity: string) => {
-    switch (intensity) {
-      case "1": return "bg-green-500/20 text-green-300 border-green-500/30";
-      case "2": return "bg-green-400/20 text-green-200 border-green-400/30";
-      case "3": return "bg-yellow-500/20 text-yellow-300 border-yellow-500/30";
-      case "4": return "bg-orange-500/20 text-orange-300 border-orange-500/30";
-      case "5": return "bg-red-500/20 text-red-300 border-red-500/30";
-      default: return "bg-gray-500/20 text-gray-300 border-gray-500/30";
-    }
+    const level = parseInt(intensity);
+    if (level <= 2) return "bg-green-500/20 text-green-300 border-green-500/30";
+    if (level <= 4) return "bg-yellow-500/20 text-yellow-300 border-yellow-500/30";
+    if (level <= 6) return "bg-orange-500/20 text-orange-300 border-orange-500/30";
+    if (level <= 8) return "bg-red-500/20 text-red-300 border-red-500/30";
+    return "bg-red-700/20 text-red-200 border-red-700/30";
   };
 
   return (
@@ -108,7 +152,11 @@ const DiarioAnsiedadeList = () => {
           </CardHeader>
 
           <CardContent className="space-y-4">
-            {entries.length === 0 ? (
+            {isLoading ? (
+              <div className="text-center py-12">
+                <p className="text-white/70">Carregando registros...</p>
+              </div>
+            ) : entries.length === 0 ? (
               <div className="text-center py-12">
                 <Heart className="w-16 h-16 text-white/50 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">
