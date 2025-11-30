@@ -8,7 +8,8 @@ import { Separator } from '@/components/ui/separator';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
-import { Loader2, User, ArrowLeft, Lock } from 'lucide-react';
+import { Loader2, User, ArrowLeft, Lock, Camera } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { z } from 'zod';
 
 const profileSchema = z.object({
@@ -201,6 +202,33 @@ const MinhaConta = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {/* Profile Photo Section */}
+          <div className="flex flex-col items-center mb-6">
+            <div className="relative group">
+              <Avatar className="w-24 h-24 border-2 border-white/20">
+                <AvatarImage src="" alt="Foto de perfil" />
+                <AvatarFallback className="bg-primary/20 text-white text-2xl">
+                  {username ? username.charAt(0).toUpperCase() : 'U'}
+                </AvatarFallback>
+              </Avatar>
+              <button
+                type="button"
+                className="absolute bottom-0 right-0 bg-primary hover:bg-primary/80 rounded-full p-2 transition-colors"
+                onClick={() => {
+                  toast({
+                    title: "Em breve",
+                    description: "A funcionalidade de alterar foto estará disponível em breve",
+                  });
+                }}
+              >
+                <Camera className="w-4 h-4 text-white" />
+              </button>
+            </div>
+            <p className="text-white/60 text-sm mt-2">Clique para alterar a foto</p>
+          </div>
+
+          <Separator className="mb-6 bg-white/20" />
+
           <form onSubmit={handleUpdateProfile} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="username" className="text-white">Nome de Usuário</Label>
