@@ -17,6 +17,7 @@ const profileSchema = z.object({
 });
 
 const passwordSchema = z.object({
+  currentPassword: z.string().min(1, { message: "A senha atual é obrigatória" }),
   newPassword: z.string().min(6, { message: "A senha deve ter pelo menos 6 caracteres" }),
   confirmPassword: z.string().min(6, { message: "A senha deve ter pelo menos 6 caracteres" }),
 }).refine((data) => data.newPassword === data.confirmPassword, {
@@ -32,6 +33,7 @@ const MinhaConta = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [loadingProfile, setLoadingProfile] = useState(true);
+  const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordLoading, setPasswordLoading] = useState(false);
@@ -117,9 +119,25 @@ const MinhaConta = () => {
     e.preventDefault();
     
     try {
-      const validated = passwordSchema.parse({ newPassword, confirmPassword });
+      const validated = passwordSchema.parse({ currentPassword, newPassword, confirmPassword });
       setPasswordLoading(true);
 
+      // Verificar a senha atual re-autenticando o usuário
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: validated.currentPassword,
+      });
+
+      if (signInError) {
+        toast({
+          title: "Senha atual incorreta",
+          description: "A senha atual informada está incorreta",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Atualizar para a nova senha
       const { error } = await supabase.auth.updateUser({
         password: validated.newPassword,
       });
@@ -131,6 +149,7 @@ const MinhaConta = () => {
         description: "Sua senha foi alterada com sucesso",
       });
 
+      setCurrentPassword('');
       setNewPassword('');
       setConfirmPassword('');
     } catch (error) {
@@ -231,6 +250,18 @@ const MinhaConta = () => {
               <h3 className="text-lg font-semibold">Alterar Senha</h3>
             </div>
             <form onSubmit={handleChangePassword} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="currentPassword" className="text-white">Senha Atual</Label>
+                <Input
+                  id="currentPassword"
+                  type="password"
+                  placeholder="••••••••"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  required
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                />
+              </div>
               <div className="space-y-2">
                 <Label htmlFor="newPassword" className="text-white">Nova Senha</Label>
                 <Input
