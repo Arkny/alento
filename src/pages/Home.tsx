@@ -49,18 +49,19 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gradient-start via-gradient-middle to-gradient-end flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-gradient-start via-gradient-middle to-gradient-end flex items-center justify-center relative overflow-hidden px-4">
       {/* Logout Button */}
       <div className="absolute top-4 right-4 z-20">
         <Button
           variant="outline"
           onClick={signOut}
-          className="bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm"
+          className="bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm text-xs sm:text-sm px-3 py-2 sm:px-4"
         >
-          <LogOut className="w-4 h-4 mr-2" />
+          <LogOut className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
           Sair
         </Button>
       </div>
+      
       {/* Central Shape */}
       <div className="relative z-10">
         <button
@@ -70,7 +71,7 @@ const Home = () => {
           <img
             src={isExpanded ? blobShape : circleShape}
             alt="Central shape"
-            className={`w-64 h-64 sm:w-80 sm:h-80 object-contain opacity-20 transition-all duration-700 ease-in-out ${
+            className={`w-32 h-32 xs:w-48 xs:h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 object-contain opacity-20 transition-all duration-700 ease-in-out ${
               isExpanded 
                 ? 'rotate-12 scale-110 opacity-30' 
                 : 'rotate-0 scale-100 opacity-20'
@@ -82,10 +83,20 @@ const Home = () => {
       {/* Navigation Carousel */}
       {(isExpanded || isClosing) && (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-[500px] h-[500px] sm:w-[600px] sm:h-[600px]">
+          <div className="relative w-[280px] h-[280px] xs:w-[340px] xs:h-[340px] sm:w-[480px] sm:h-[480px] md:w-[600px] md:h-[600px]">
             {navigationItems.map((item, index) => {
               const angle = (index * 360) / navigationItems.length;
-              const radius = 280;
+              // Responsive radius based on screen size
+              const getRadius = () => {
+                if (typeof window !== 'undefined') {
+                  if (window.innerWidth < 400) return 120;
+                  if (window.innerWidth < 640) return 150;
+                  if (window.innerWidth < 768) return 200;
+                  return 250;
+                }
+                return 200;
+              };
+              const radius = getRadius();
               const x = Math.cos((angle - 90) * (Math.PI / 180)) * radius;
               const y = Math.sin((angle - 90) * (Math.PI / 180)) * radius;
 
@@ -93,23 +104,23 @@ const Home = () => {
                 <button
                   key={item.id}
                   onClick={() => handleNavigationClick(item.path)}
-                  className={`absolute w-24 h-24 sm:w-[120px] sm:h-[120px] bg-black/20 rounded-full flex items-center justify-center hover:bg-black/30 transition-all duration-300 opacity-0 backdrop-blur-sm group ${
+                  className={`absolute w-14 h-14 xs:w-16 xs:h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-black/20 rounded-full flex items-center justify-center hover:bg-black/30 transition-all duration-300 opacity-0 backdrop-blur-sm group ${
                     isClosing ? 'animate-fade-out' : 'animate-fade-in'
                   }`}
                   style={{
-                    left: `calc(50% + ${x}px - 3rem)`,
-                    top: `calc(50% + ${y}px - 3rem)`,
+                    left: `calc(50% + ${x}px - 1.75rem)`,
+                    top: `calc(50% + ${y}px - 1.75rem)`,
                     animationDelay: isClosing ? '0ms' : `${index * 150}ms`,
                   }}
                   disabled={!item.icon}
                 >
                   {item.icon && (
-                    <item.icon className="w-10 h-10 sm:w-12 sm:h-12 text-white group-hover:scale-110 transition-transform duration-200" />
+                    <item.icon className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white group-hover:scale-110 transition-transform duration-200" />
                   )}
                   
-                  {/* Label */}
-                  <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    <span className="text-white text-sm sm:text-base font-medium bg-black/50 px-2 py-1 rounded-lg backdrop-blur-sm whitespace-nowrap">
+                  {/* Label - hidden on very small screens, visible on hover for larger */}
+                  <div className="absolute top-full mt-1 sm:mt-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 sm:group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                    <span className="text-white text-[10px] xs:text-xs sm:text-sm font-medium bg-black/50 px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-lg backdrop-blur-sm whitespace-nowrap">
                       {item.label}
                     </span>
                   </div>
