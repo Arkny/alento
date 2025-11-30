@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -32,12 +32,15 @@ const MinhaConta = () => {
   const { user } = useAuth();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [loadingProfile, setLoadingProfile] = useState(true);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordLoading, setPasswordLoading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (user) {
@@ -51,7 +54,7 @@ const MinhaConta = () => {
     try {
       const { data, error } = await supabase
         .from('profiles')
-        .select('username, email')
+        .select('username, email, avatar_url')
         .eq('id', user.id)
         .single();
 
@@ -60,6 +63,7 @@ const MinhaConta = () => {
       if (data) {
         setUsername(data.username);
         setEmail(data.email);
+        setAvatarUrl(data.avatar_url);
       }
     } catch (error) {
       console.error('Erro ao carregar perfil:', error);
@@ -70,6 +74,75 @@ const MinhaConta = () => {
       });
     } finally {
       setLoadingProfile(false);
+    }
+  };
+
+  const handleAvatarUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file || !user) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: "Arquivo inválido",
+        description: "Por favor, selecione uma imagem",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate file size (max 2MB)
+    if (file.size > 2 * 1024 * 1024) {
+      toast({
+        title: "Arquivo muito grande",
+        description: "A imagem deve ter no máximo 2MB",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setUploadingAvatar(true);
+
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${user.id}/avatar.${fileExt}`;
+
+      // Upload the file
+      const { error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(fileName, file, { upsert: true });
+
+      if (uploadError) throw uploadError;
+
+      // Get the public URL
+      const { data: urlData } = supabase.storage
+        .from('avatars')
+        .getPublicUrl(fileName);
+
+      const newAvatarUrl = `${urlData.publicUrl}?t=${Date.now()}`;
+
+      // Update the profile with the new avatar URL
+      const { error: updateError } = await supabase
+        .from('profiles')
+        .update({ avatar_url: newAvatarUrl })
+        .eq('id', user.id);
+
+      if (updateError) throw updateError;
+
+      setAvatarUrl(newAvatarUrl);
+      toast({
+        title: "Foto atualizada!",
+        description: "Sua foto de perfil foi alterada com sucesso",
+      });
+    } catch (error) {
+      console.error('Erro ao fazer upload:', error);
+      toast({
+        title: "Erro ao atualizar foto",
+        description: "Não foi possível atualizar sua foto de perfil",
+        variant: "destructive",
+      });
+    } finally {
+      setUploadingAvatar(false);
     }
   };
 
@@ -206,25 +279,34 @@ const MinhaConta = () => {
           <div className="flex flex-col items-center mb-6">
             <div className="relative group">
               <Avatar className="w-24 h-24 border-2 border-white/20">
-                <AvatarImage src="" alt="Foto de perfil" />
+                <AvatarImage src={avatarUrl || ''} alt="Foto de perfil" />
                 <AvatarFallback className="bg-primary/20 text-white text-2xl">
                   {username ? username.charAt(0).toUpperCase() : 'U'}
                 </AvatarFallback>
               </Avatar>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleAvatarUpload}
+                className="hidden"
+              />
               <button
                 type="button"
-                className="absolute bottom-0 right-0 bg-primary hover:bg-primary/80 rounded-full p-2 transition-colors"
-                onClick={() => {
-                  toast({
-                    title: "Em breve",
-                    description: "A funcionalidade de alterar foto estará disponível em breve",
-                  });
-                }}
+                className="absolute bottom-0 right-0 bg-primary hover:bg-primary/80 rounded-full p-2 transition-colors disabled:opacity-50"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploadingAvatar}
               >
-                <Camera className="w-4 h-4 text-white" />
+                {uploadingAvatar ? (
+                  <Loader2 className="w-4 h-4 text-white animate-spin" />
+                ) : (
+                  <Camera className="w-4 h-4 text-white" />
+                )}
               </button>
             </div>
-            <p className="text-white/60 text-sm mt-2">Clique para alterar a foto</p>
+            <p className="text-white/60 text-sm mt-2">
+              {uploadingAvatar ? 'Enviando...' : 'Clique para alterar a foto'}
+            </p>
           </div>
 
           <Separator className="mb-6 bg-white/20" />
